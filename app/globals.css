@@ -3,25 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --mainLight: #F5EEDD;
+  --mainDark: #AB7A3E;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --mainLight: #F5EEDD;
+    --mainDark: #AB7A3E;
   }
+}
+html{
+  background: var(--mainLight)!important;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /*color: var(--foreground);*/
+  background: var(--mainLight);
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  /*height: 100vh;*/
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/*@layer utilities {*/
+/*  .text-balance {*/
+/*    text-wrap: balance;*/
+/*  }*/
+/*}*/
+
+/*.intro-text{*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    opacity: 0;*/
+/*}*/
+
+.opacity-0-animate {
+  opacity: 0;
 }

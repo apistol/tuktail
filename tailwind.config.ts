@@ -12,6 +12,10 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      // backgroundImage: {
+      //   'section-hero': "url('/hero-glass.png')",
+      //   'section-advantages': "url('/hero-glass.svg')",
+      // },
     },
   },
   plugins: [],

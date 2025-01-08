@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+/**, *::before, *::after {*/
+/*    box-sizing: border-box;*/
+/*}*/
+:root {
+    --mainLight: #F5EEDD;
+    --mainDark: #AB7A3E;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --mainLight: #F5EEDD;
+        --mainDark: #AB7A3E;
+    }
+}
+
+html{
+    background: #F3E8E1;
+}
+
+.nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100px;
+    width: 100%;
+    background: var(--mainLight)!important;
+}
+
+
+.hero-bg {
+    background-image: url('/background-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-bg_transparent {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.section-advantages {
+    background-image: url('/hero-glass.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.font-grotesk {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-mono {
+    font-family: 'Space Mono', monospace;
+}
