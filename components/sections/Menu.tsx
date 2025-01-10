@@ -15,6 +15,8 @@ function Menu() {
             <div className={"h-screen flex flex-col lg:flex-row justify-center align-middle"}>
                 <div className={"lg:w-1/3 flex flex-col justify-center mb-10 lg:mb-0"}>
                     <h3 className={"text-4xl text-center font-grotesk font-bold"}>Aperol Spritz</h3>
+
+                    <p className={"font-grotesk m-10"}>Lichior ușor, cu un conținut redus de alcool, care să fie ideal pentru a fi savurat ca aperitiv. Rețeta include o combinație de ierburi, rădăcini, portocală amară și alte ingrediente naturale.</p>
                 </div>
                 <Image src={"/aperol-spritz.png"}
                        alt={"Aperol Sprtiz"}
@@ -33,6 +35,7 @@ function Menu() {
             <div className={"h-screen flex flex-col lg:flex-row justify-center align-middle"}>
                 <div className={"lg:w-1/3 flex flex-col justify-center mb-10 lg:mb-0"}>
                     <h3 className={"text-4xl text-center font-grotesk font-bold"}>Mimosa</h3>
+                    <p className={"font-grotesk m-10"}>Mimosa a fost inventată în 1925 de un barman francez de la Hôtel Ritz din Paris. Băutură mai ușoară utilizează suc de portocale proaspăt stors și un vin spumant de calitate.</p>
                 </div>
                 <Image src={"/mimosa.png"}
                        alt={"Mimosa"}
