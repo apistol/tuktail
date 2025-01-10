@@ -16,6 +16,19 @@
     }
 }
 
+
+.font-grotesk {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-mono {
+    font-family: 'Space Mono', monospace;
+}
+
+* {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
 html{
     background: #F3E8E1;
 }
@@ -31,6 +44,8 @@ html{
 }
 
 
+
+/* Hero landing */
 .hero-bg {
     background-image: url('/background-hero.jpg');
     background-size: cover;
@@ -44,6 +59,7 @@ html{
 
 
 
+/* Advantages section */
 .section-advantages {
     background-image: url('/hero-glass.svg');
     background-size: cover;
@@ -51,10 +67,93 @@ html{
     background-repeat: no-repeat;
 }
 
-.font-grotesk {
+
+/* Form section */
+.form_label{
     font-family: 'Space Grotesk', sans-serif;
 }
 
-.font-mono {
-    font-family: 'Space Mono', monospace;
+.form_text_input{
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+
+
+/* Form section */
+.form_text_input_date{
+    max-width: 250px;
+}
+@media (min-width: 991px) {
+    .form_text_input_date{
+        max-width: 450px;
+    }
+}
+
+
+/* Menu section */
+.custom-button {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    background-color: #a67c52; /* Brown background */
+    border: 2px solid #a67c52; /* Outer border */
+    border-radius: 30px; /* Rounded corners */
+    padding: 10px 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.custom-button::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    right: -7px;
+    bottom: -7px;
+    border: 2px solid #a67c52; /* Border color */
+    border-radius: 35px; /* Slightly larger radius to match the button */
+    pointer-events: none; /* Ensure the border does not interfere with button clicks */
+}
+
+.custom-button:hover {
+    background-color: #8c643e; /* Darker brown on hover */
+    border-color: #8c643e;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+
+.custom-button-oulined{
+    font-weight: bold;
+    color: #8c643e; /* White text */
+    background-color: transparent; /* Brown background */
+    border: 2px solid #a67c52; /* Outer border */
+    border-radius: 30px; /* Rounded corners */
+    padding: 12px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+
+
+
+.buttons-total{
+    /*background-color: #8c643e; !* Darker brown on hover *!*/
+    /*border-color: #8c643e;*/
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+}
+
+.buttons-total:active {
+    transform: scale(0.95); /* Slightly shrink on click */
 }
