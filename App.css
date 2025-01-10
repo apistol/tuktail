@@ -32,6 +32,9 @@
 html{
     background: #F3E8E1;
 }
+body{
+    overflow-x: hidden;
+}
 
 .nav{
     position: absolute;
