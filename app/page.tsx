@@ -13,7 +13,6 @@ import Form from "@/components/sections/Form";
 import Advantages from "@/components/sections/advantages/Advantages";
 import Menu from "@/components/sections/Menu";
 import Total from "@/components/sections/Total";
-// import type { Metadata } from "next";
 import {AppProvider} from "@/lib/context";
 import Footer from "@/components/sections/Footer";
 

@@ -2,6 +2,20 @@ import React from 'react';
 import Image from "next/image";
 
 const Navigation = () => {
+
+    const handleFacebook = () => {
+        window.open('https://www.facebook.com/profile.php?id=61571936429913', '_blank');
+    }
+    const handleInstagram = () => {
+        window.open('https://www.instagram.com/tukteilromania/', '_blank');
+    }
+    const handleEmail = () => {
+        window.open('mailto:tukteiloffice@gmail.com', '_blank');
+    }
+    const handleWhatsApp = () => {
+        window.open('https://wa.me/0040762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere!', '_blank');
+    }
+
     return (
         <div className="nav flex justify-between align-middle lg:py-4 lg:px-12">
             <div className="hidden lg:block col-span-1 flex-1 ">
@@ -15,28 +29,28 @@ const Navigation = () => {
             <div className="col-span-1 h-full flex-1 flex justify-end align-middle pr-10">
                 <div className="flex flex-row gap-1">
                     <a
-                        onClick={() => alert("Facebook")}
+                        onClick={() => handleFacebook()}
                         className={"flex align-middle lg:align-top"}
                     >
-                        <Image width={49} height={49} src={"./icon-facebook.svg"} alt={"placeholder"} className={"w-8"}/>
+                        <Image width={49} height={49} src={"./icon-facebook.svg"} alt={"Facebook"} className={"w-8"}/>
                     </a>
                     <a
-                        onClick={() => alert("Instagram")}
+                        onClick={() => handleInstagram()}
                         className={"flex align-middle lg:align-top"}
                     >
-                        <Image width={49} height={49} src={"./icon-instagram.svg"} alt={"placeholder"} className={"w-8"}/>
+                        <Image width={49} height={49} src={"./icon-instagram.svg"} alt={"Instagram"} className={"w-8"}/>
                     </a>
                     <a
-                        onClick={() => alert("Mail")}
+                        onClick={() => handleEmail()}
                         className={"flex align-middle lg:align-top"}
                     >
-                        <Image width={49} height={49} src={"./icon-email.svg"} alt={"placeholder"} className={"w-8"}/>
+                        <Image width={49} height={49} src={"./icon-email.svg"} alt={"Email"} className={"w-8"}/>
                     </a>
                     <a
-                        onClick={() => alert("Wapp")}
+                        onClick={() => handleWhatsApp()}
                         className={"flex align-middle lg:align-top"}
                     >
-                        <Image width={49} height={49} src={"./icon-whatsapp.svg"} alt={"placeholder"} className={"w-8"}/>
+                        <Image width={49} height={49} src={"./icon-whatsapp.svg"} alt={"Whatsapp"} className={"w-8"}/>
                     </a>
                 </div>
             </div>

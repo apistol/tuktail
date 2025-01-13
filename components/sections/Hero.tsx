@@ -56,13 +56,15 @@ function Hero() {
                                 importante evenimente din viata ta</h3>
                         </div>
                         <div className={"absolute bottom-5 right-5"}>
-                            {/*<div >*/}
-                            <ScrollableLink to="advantages" smooth={true} duration={500}
+                            <ScrollableLink to="advantages"
+                                            smooth={true}
+                                            duration={500}
                                             className={"text-xl text-white text-right cursor-pointer font-mono mx-4 mb-8" +
-                                                " font-mono"}>
+                                                " font-mono"}
+                                            style={{ touchAction: 'manipulation' }}
+                            >
                                 <span className={"opacity-0"} ref={anchorRef} >MERGI MAI DEPARTE</span>
                             </ScrollableLink>
-                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
