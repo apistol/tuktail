@@ -13,7 +13,7 @@ const Navigation = () => {
         window.open('mailto:tukteiloffice@gmail.com', '_blank');
     }
     const handleWhatsApp = () => {
-        window.open('https://wa.me/0040762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere!', '_blank');
+        window.open('https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere!', '_blank');
     }
 
     return (

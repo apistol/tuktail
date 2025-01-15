@@ -1,5 +1,4 @@
 import React, {useEffect, useRef} from 'react';
-import {Link as ScrollableLink} from 'react-scroll';
 import {gsap} from 'gsap';
 import {SplitText} from 'gsap/SplitText';
 
@@ -11,6 +10,8 @@ function Hero() {
     const anchorRef = useRef<HTMLHeadingElement>(null);
     const tl = useRef<gsap.core.Timeline>();
 
+
+    // animation for text reveal
     useEffect(() => {
         const mySplitText = new SplitText(h3Ref.current, {type: "words,chars"});
         const chars = mySplitText.chars;
@@ -45,6 +46,12 @@ function Hero() {
     }, []);
 
 
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        e.preventDefault();
+        const target = window.innerWidth < 1024 ? "#advantagesMobile" : "#advantages";
+        gsap.to(window, {duration: 1, scrollTo: target, ease: "power4.inOut"});
+    };
+
     return (
         <div id={"intro"} className={"h-screen relative hero-bg"}>
             <div className={"h-full flex flex-row"}>
@@ -56,15 +63,13 @@ function Hero() {
                                 importante evenimente din viata ta</h3>
                         </div>
                         <div className={"absolute bottom-5 right-5"}>
-                            <ScrollableLink to="advantages"
-                                            smooth={true}
-                                            duration={500}
-                                            className={"text-xl text-white text-right cursor-pointer font-mono mx-4 mb-8" +
-                                                " font-mono"}
-                                            style={{ touchAction: 'manipulation' }}
+                            <a
+                                onClick={handleScroll}
+                                className={"text-xl text-white w-full h-20 text-right cursor-pointer font-mono mx-4" +
+                                    " mb-8"}
                             >
-                                <span className={"opacity-0"} ref={anchorRef} >MERGI MAI DEPARTE</span>
-                            </ScrollableLink>
+                                <span className={"opacity-0"} ref={anchorRef}>MERGI MAI DEPARTE</span>
+                            </a>
                         </div>
                     </div>
                 </div>

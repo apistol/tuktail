@@ -15,9 +15,8 @@ function Menu() {
             <div className={"h-screen flex flex-col lg:flex-row justify-center align-middle"}>
                 <div className={"lg:w-1/3 flex flex-col justify-center mb-10 lg:mb-0"}>
                     <h3 className={"text-4xl text-center font-grotesk font-bold"}>Aperol Spritz</h3>
-
-                    <p className={"font-grotesk m-10"}>Lichior ușor, cu un conținut redus de alcool, care să fie ideal pentru a fi savurat ca aperitiv. Rețeta include o combinație de ierburi, rădăcini, portocală amară și alte ingrediente naturale.</p>
-                </div>
+                    <p className={"font-grotesk m-10"}>Adauga o nota de stil italian petrecerii tale cu Aperol Spritz, cocktailul vibrant din Veneto! Cu origini in anii 1950 si o istorie legata de cultura „aperitivo”, aceasta bautura racoritoare combina perfect vinul spumant, Aperolul si apa minerala. Gustul sau echilibrat, intre amar si dulce, dar si culoarea atragatoare il fac unul dintre cele mai iubite cocktailuri. Alege Aperol Spritz pentru a aduce farmecul Italiei direct la petrecerea ta!</p>
+                </div>s
                 <Image src={"/aperol-spritz.png"}
                        alt={"Aperol Sprtiz"}
                        className={"w-2/5 lg:w-1/3 lg:p-20 mx-auto mb-10 lg:mb-0"}
@@ -35,7 +34,7 @@ function Menu() {
             <div className={"h-screen flex flex-col lg:flex-row justify-center align-middle"}>
                 <div className={"lg:w-1/3 flex flex-col justify-center mb-10 lg:mb-0"}>
                     <h3 className={"text-4xl text-center font-grotesk font-bold"}>Mimosa</h3>
-                    <p className={"font-grotesk m-10"}>Mimosa a fost inventată în 1925 de un barman francez de la Hôtel Ritz din Paris. Băutură mai ușoară utilizează suc de portocale proaspăt stors și un vin spumant de calitate.</p>
+                    <p className={"font-grotesk m-10"}>Transforma orice petrecere intr-un brunch de lux cu Mimosa, bautura eleganta inventata in 1925 la Paris! Perfecta pentru toasturi si celebrari, combinatia de sampanie si suc proaspat de portocale ofera un echilibru ideal intre rafinament si prospetime. Simplu, dar sofisticat, Mimosa este alegerea perfecta pentru momentele speciale alaturi de prieteni. Alege sa ridici nivelul petrecerii tale cu acest clasic atemporal!</p>
                 </div>
                 <Image src={"/mimosa.png"}
                        alt={"Mimosa"}
@@ -54,6 +53,7 @@ function Menu() {
             <div className={"h-screen flex flex-col lg:flex-row justify-center align-middle"}>
                 <div className={"lg:w-1/3 flex flex-col justify-center mb-10 lg:mb-0"}>
                     <h3 className={"text-4xl text-center font-grotesk font-bold"}>Hugo</h3>
+                    <p className={"font-grotesk m-10"}>Surprinde-ti invitatii cu un cocktail sofisticat si revigorant – Hugo! Creat in 2005 in Tirolul de Sud, acest mix delicios de prosecco, sirop de soc, apa minerala si menta proaspata este perfect pentru serile calduroase si nu numai. Cu aroma sa florala si prospetimea inconfundabila, Hugo este bautura care transforma orice petrecere intr-un moment memorabil. Alege Hugo pentru a aduce o briza de prospetime la evenimentul tau!</p>
                 </div>
                 <Image src={"/hugo.png"}
                        alt={"Hugo"}
@@ -71,7 +71,9 @@ function Menu() {
 
             <div className={"h-screen flex flex-col lg:flex-row justify-center align-middle"}>
                 <div className={"lg:w-1/3 flex flex-col justify-center mb-10 lg:mb-0"}>
-                    <h3 className={"text-4xl text-center font-grotesk font-bold"}>Prossecco</h3>
+                    <h3 className={"text-4xl text-center font-grotesk font-bold"}>Prosecco</h3>
+                    <p className={"font-grotesk m-10"}>Fa din petrecerea ta o adevarata sarbatoare cu Prosecco, vinul spumant italian renumit pentru aroma sa fructata si florala! Originar din Veneto, Prosecco aduce o nota festiva si un gust racoritor care se potriveste perfect oricarei ocazii. Fie ca il savurezi simplu sau in cocktailuri precum Aperol Spritz sau Hugo, Prosecco este esenta rafinamentului italian. Alege-l pentru un toast memorabil si o atmosfera de neuitat!</p>
+
                 </div>
                 <Image src={"/prosseco.png"}
                        alt={"Prosecco"}

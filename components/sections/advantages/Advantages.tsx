@@ -10,7 +10,7 @@ function Advantages() {
         <>
         <div id={"advantages"} className={"hidden lg:block lg:h-screen relative lg:flex flex-row align-middle "}>
 
-            <div className={"my-32 lg:w-3/5 h-full flex align-middle justify-center"}>
+            <div className={"lg:w-3/5 h-full flex align-middle justify-center"}>
                 <Image width={500} height={500} alt={"Avantaje Tuk"} className={"w-2/3"} src={"./advantages-motive.svg"}/>
             </div>
 
@@ -18,17 +18,17 @@ function Advantages() {
             <div className={"lg:w-2/5 "}>
                 <div className={"h-full flex flex-col justify-center align-middle px-12 gap-16"}>
                     <div>
-                        <h3 className={"font-mono text-4xl"}>01 Convenienta si flexibilitate </h3>
+                        <h3 className={"font-mono text-4xl mb-6"}>01 Convenienta si flexibilitate </h3>
                         <p  className={"font-grotesk text-2xl"}>Usor de amplasat in orice locatie, fie ca petrecerea este in aer liber sau intr-un spatiu
                             inchis.</p>
                     </div>
                     <div>
-                        <h3 className={"font-mono text-4xl"}>02 Personalizare </h3>
+                        <h3 className={"font-mono text-4xl mb-6"}>02 Personalizare </h3>
                         <p  className={"font-grotesk text-2xl"}>Poti adapta meniul de bauturi in functie de preferintele invitatilor. (Vezi sectiunea de mai
                             jos.)</p>
                     </div>
                     <div>
-                        <h3 className={"font-mono text-4xl"}>03 Atmosfera friendly</h3>
+                        <h3 className={"font-mono text-4xl mb-6"}>03 Atmosfera friendly</h3>
                         <p  className={"font-grotesk text-2xl"}>Sociabili, tineri si cu un vibe bun, aducem un plus atmosferei de la evenimentul tau.</p>
                     </div>
                 </div>
