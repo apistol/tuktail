@@ -46,8 +46,14 @@ function Presentation() {
         );
     }, []);
 
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        e.preventDefault();
+        const target = "#form";
+        gsap.to(window, {duration: 1, scrollTo: target, ease: "power4.inOut"});
+    };
+
     return (
-        <div id={"impact"} ref={containerRef} className="fold fold3 relative" style={{ minHeight:"100vh"}}>
+        <div id={"impact"} ref={containerRef} className="fold fold3 relative" style={{minHeight: "100vh"}}>
             <h1 className={"text-5xl font-mono text-center my-10"}>CUM ARATA TUKURILE?</h1>
             <div className={"flex flex-col lg:flex-row"}>
                 <div className={"flex-1 flex"}>
@@ -70,11 +76,14 @@ function Presentation() {
                 </div>
             </div>
 
-            <div className={"flex flex-row justify-center absolute left-0 right-0 bottom-10"}>
-                <ScrollableLink to="form" smooth={true} duration={500}
-                                className={"text-xl text-white text-right cursor-pointer font-mono"}>
+            <div
+                className={"flex flex-row justify-center absolute left-0 right-0"}
+                style={{bottom: "-50px"}}
+            >
+                <a onClick={handleScroll}
+                   className={"text-xl text-white text-right cursor-pointer font-mono z-10"}>
                     <ScrollAnimation/>
-                </ScrollableLink>
+                </a>
             </div>
         </div>
     );
