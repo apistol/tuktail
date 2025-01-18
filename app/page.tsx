@@ -9,10 +9,10 @@ import {ScrollToPlugin} from 'gsap/ScrollToPlugin';
 import Navigation from "@/components/Navigation";
 import Presentation from "@/components/sections/Presentation";
 import Form from "@/components/sections/Form";
-import Advantages from "@/components/sections/advantages/Advantages";
 import Menu from "@/components/sections/Menu";
 import Total from "@/components/sections/Total";
 import Footer from "@/components/sections/Footer";
+import Advantages from "@/components/sections/Advantages";
 
 
 gsap.registerPlugin(ScrollTrigger);
