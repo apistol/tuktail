@@ -7,7 +7,7 @@ const smoothScrollToSection = (id: string) => {
   const target = document.getElementById(id);
   if (target) {
     gsap.to(window, {
-      scrollTo: { y: `#${id}`, autoKill: false },
+      scrollTo: { y: target, autoKill: false },
       duration: 0.85,
       ease: 'power3.inOut',
     });
