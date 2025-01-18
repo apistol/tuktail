@@ -112,7 +112,6 @@ export const EventProvider = ({children}: { children: ReactNode }) => {
 
     return (
         <EventContext.Provider
-            // @ts-ignore
             value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne}}>
             {children}
         </EventContext.Provider>

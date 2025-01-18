@@ -21,9 +21,8 @@ function Form() {
         const inputValue = e.target.value;
 
         if (inputValue === "") {
-            setError("Numărul de invitați nu poate fi gol."); // Error for empty input
-            setInvitesState(0); // Reset to minimum 10
-            setInvites(0);
+            setInvitesState(""); // Reset to minimum 10
+            setInvites("");
         } else {
             const parsedInvites = parseInt(inputValue, 10);
 

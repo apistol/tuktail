@@ -31,8 +31,11 @@ function Menu() {
                             className={"text-center custom-button w-40 mx-auto"}
                             onClick={() => {
                                 const selectedItem = menuItems[index];
-                                // @ts-ignore
-                                addOne(selectedItem);
+                                addOne({
+                                    id:selectedItem.id,
+                                    name: selectedItem.title,
+                                    qty: 1
+                                });
                             }}
                         >
                             Imi place
