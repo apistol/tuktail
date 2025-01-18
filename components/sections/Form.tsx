@@ -1,30 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {Link as ScrollableLink} from "react-scroll";
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
-import { AppContext } from '@/lib/context';
-// import { ActionType } from '@/lib/types';
 
 
 function Form() {
 
-
-    const context = useContext(AppContext);
-
-    if (!context) {
-        throw new Error('ProductList must be used within an AppProvider');
-    }
-
-    const {
-        // state, dispatch
-    } = context;
-
-
-    // const addProduct = () => {
-    //     const newProduct = { id: Date.now(), name: 'New Product', price: 100 };
-    //     dispatch({ type: ActionType.AddProduct, payload: newProduct });
-    // };
-
     const currentDate = new Date().toISOString().split('T')[0];
+
+    // TODO update DB
+    // TODO sanities update ( no letters , current date values ) updates
 
     return (<div id={"form"} className={"relative h-screen w-screen overflow-hidden flex flex-col justify-center" +
             " gap-20"}>
