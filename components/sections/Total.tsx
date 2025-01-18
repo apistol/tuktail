@@ -56,7 +56,6 @@ function Total() {
     }
 
 
-
     return (
         <>
             <h2 id={"menu"} className={"text-center text-5xl font-grotesk w-screen mb-20"}>SIMULATOR
@@ -140,7 +139,12 @@ function Total() {
             </div>
 
 
-            <h4 className={"my-10 text-3xl text-center"}>Cere un discount!</h4>
+            <a
+                className={"my-10 text-3xl text-center"}
+                href={"https://docs.google.com/forms/d/e/1FAIpQLSfn4lNFZsvyWgJgikyNiEuoHle9zAQ1ISFcgBsfOGsM3gy7ag/viewform?usp=header"}
+            >
+                Da-ne parerea ta!
+            </a>
 
             <div className={"flex justify-center align-middle gap-10 mb-10"}>
                 <a
