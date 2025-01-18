@@ -10,39 +10,37 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Image from "next/image";
+import {useEventContext} from "@/components/context";
+import {useEffect, useState} from "react";
+import {OrderItem} from "@/components/types/Order";
 
 
-const orders = [
-    {
-        id: 1,
-        name: "Aperol Spritz",
-        qty: 2
-    },
-    {
-        id: 2,
-        name: "Mimosa",
-        qty: 3
-    },
-    {
-        id: 3,
-        name: "Hugo",
-        qty: 4
-    }
-]
 
-
-const handleAddMenu = (id: number) => {
-      return console.log(id);
-}
-const handleTrashMenu = (id: number) => {
-      return console.log(id);
-}
-const handleSubstractMenu = (id: number) => {
-      return console.log(id);
-}
 
 function Total() {
 
+    const {menu, } = useEventContext()
+    const [menuState, setMenuState] = useState<OrderItem[]>([]);
+
+    useEffect(() => {
+        setMenuState(menu);
+        console.log("menu effect rendered");
+    }, [menu.length]);
+
+
+    const handleAddMenu = (id: number | string) => {
+        setMenuState(prevState =>
+            prevState.map(item => item.id === Number(id) ? { ...item, qty: item.qty + 1 } : item)
+        );
+    }
+
+    const handleTrashMenu = (id: number) => {
+        setMenuState(menuState.filter(item => item.id !== id));
+    }
+
+    const handleSubstractMenu = (id: number) => {
+        setMenuState(menuState.map(item => item.id === id && item.qty > 1 ? {...item, qty: item.qty - 1} : item));
+    }
 
     const editACtionCell = (id: number) => {
         return (
@@ -56,6 +54,8 @@ function Total() {
             </div>
         );
     }
+
+
 
     return (
         <>
@@ -113,7 +113,8 @@ function Total() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {orders.map((order) => (
+
+                            {menuState.map((order) => (
                                 <TableRow
                                     key={order.id}
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
