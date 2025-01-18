@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link as ScrollableLink } from "react-scroll";
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
 import { useEventContext } from "@/components/context";
+import {Alert} from "@mui/material";
+import InfoIcon from '@mui/icons-material/Info';
+import {gsap} from "gsap";
 
 function Form() {
     const { setDate, setInvites } = useEventContext();
@@ -30,10 +32,10 @@ function Form() {
                 setError("Trebuie să introduci un număr valid de invitați."); // Error for invalid input
                 setInvitesState("0");
                 setInvites("0");
-            } else if (parsedInvites < 0) {
+            } else if (parsedInvites <= 0) {
                 setError("Trebuie să introduci un număr valid de invitați."); // Error for invalid input
-                setInvitesState("10");
-                setInvites("10");
+                setInvitesState("");
+                setInvites("");
             } else if (parsedInvites > 10000) {
                 setError("Numărul maxim de invitați este 10.000."); // Error for more than 10,000
                 setInvitesState("10000");
@@ -43,6 +45,18 @@ function Form() {
                 setInvitesState(parsedInvites.toString());
                 setInvites(parsedInvites.toString()); // Update context
             }
+        }
+    };
+
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if(!invitesState){
+            setError("Trebuie să introduci un număr valid de invitați ca sa putem sa te ajutam cu estimarile.");
+        }else if(!dateState){
+            setError("Trebuie să introduci o data a evenimentului, ca sa putem sa te ajutam cu estimarile.");
+        }else{
+            e.preventDefault();
+            const target = "#menu";
+            gsap.to(window, {duration: 1, scrollTo: target, ease: "power4.inOut"});
         }
     };
 
@@ -63,17 +77,17 @@ function Form() {
                     onChange={(e) => handleSetDate(e.target.value)}
                 />
             </div>
-            <div className={"w-screen flex flex-col justify-center align-middle"}>
+            <div className={"w-screen flex flex-col justify-center align-middle px-10"}>
                 <label className={"form_label text-center text-2xl lg:text-5xl font-grotesk"} htmlFor="invites">
-                    Câți invitați vor fi? (Minim 10, Maxim 10.000)
+                    Câți invitați vor fi?
                 </label>
                 <input
                     className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5 focus:outline-none text-center mx-auto font-grotesk"}
-                    type="number" // Restrict input to numeric values
+                    type="text" // Restrict input to numeric values
                     id="invites"
                     name="invites"
                     required
-                    min={0} // Enforce minimum at HTML level
+                    min={10} // Enforce minimum at HTML level
                     max={10000} // Enforce maximum at HTML level
                     value={invitesState} // Controlled input
                     onClick={() => setInvitesState("")}
@@ -81,16 +95,19 @@ function Form() {
                     onChange={handleSetInvites}
                 />
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+
+
+                <Alert className={"max-w-96 my-10 mx-auto"} icon={<InfoIcon fontSize="inherit" />} severity="success">
+                    Aceste informatii ne vor ajuta sa iti oferim sugestii personalizate legate de petrecerea ta.
+                </Alert>
             </div>
             <div className={"absolute bottom-5 right-0 left-0"}>
-                <ScrollableLink
-                    to="menu"
-                    smooth={true}
-                    duration={500}
-                    className={"flex justify-center text-xl text-center cursor-pointer font-mono mx-4 mb-8 font-mono"}
+                <a
+                    onClick={handleScroll}
+                    className={"flex justify-center text-xl text-center cursor-pointer font-mono mx-4 mb-8 z-10"}
                 >
                     <ScrollAnimation />
-                </ScrollableLink>
+                </a>
             </div>
         </div>
     );
