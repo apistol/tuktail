@@ -19,12 +19,12 @@ import {OrderItem} from "@/components/types/Order";
 
 function Total() {
 
-    const {menu, } = useEventContext()
+    const {menu, invites } = useEventContext()
+
     const [menuState, setMenuState] = useState<OrderItem[]>([]);
 
     useEffect(() => {
         setMenuState(menu);
-        console.log("menu effect rendered");
     }, [menu.length]);
 
 
@@ -132,7 +132,7 @@ function Total() {
                 <div id={"summary"} className={"lg:w-1/2 flex flex-col justify-center align-middle p-10 lg:p-0"}>
                     <h4 className={"my-10 text-3xl"}>Sumar</h4>
                     <br/>
-                    <p className={"text-2xl"}>Pentru cei <strong>{"X"}</strong> de invitati ai tai, vei avea
+                    <p className={"text-2xl"}>Pentru cei <strong>{invites}</strong> de invitati ai tai, vei avea
                         aproximativ <strong>{"X"}</strong> de bautura per invitat</p>
                     <br/>
                     <p className={"text-2xl"}>Costul total al bauturilor este de <strong>{"X"}</strong> lei</p>
