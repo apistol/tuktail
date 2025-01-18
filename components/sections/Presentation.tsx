@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import {Link as ScrollableLink} from "react-scroll";
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
 import Image from "next/image";
 
