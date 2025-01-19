@@ -31,8 +31,10 @@ export const GlassOptions: React.FC<GlassOptionsProps> = ({ handleChangeGlass })
 
     return (
         <FormControl>
-            <FormLabel className="text-center flex" id="glass-material">
-                Cu ce fel de pahare ai vrea sa fie serviti invitatii?
+            <FormLabel className="text-center flex justify-center align-middle" id="glass-material">
+                <Typography variant="body1" style={{lineHeight:3}}>
+                    Cu ce fel de pahare ai vrea sa fie serviti invitatii?
+                </Typography>
                 <IconButton onClick={handleTooltipOpen}>
                     <InfoIcon className="info-icon" />
                 </IconButton>
@@ -50,7 +52,7 @@ export const GlassOptions: React.FC<GlassOptionsProps> = ({ handleChangeGlass })
                     }}
                 >
                     <div style={{ padding: '10px', maxWidth: '200px' }}>
-                        <Typography variant="body2">
+                        <Typography variant="body1" style={{lineHeight:3}}>
                             Tipul paharului va influenta estimarea facuta final.
                         </Typography>
                         <Button
@@ -59,7 +61,7 @@ export const GlassOptions: React.FC<GlassOptionsProps> = ({ handleChangeGlass })
                             onClick={handleTooltipClose}
                             style={{ marginTop: '8px', textAlign: 'right' }}
                         >
-                            Close
+                            Inchide
                         </Button>
                     </div>
                 </Popover>

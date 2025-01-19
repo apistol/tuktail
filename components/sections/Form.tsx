@@ -94,7 +94,7 @@ function Form() {
             </div>
             <div className={"w-screen flex flex-col justify-center align-middle px-10"}>
                 <label className={"form_label text-center text-2xl lg:text-5xl font-grotesk"} htmlFor="invites">
-                    Câți invitați vor fi?
+                    Câți invitați vor fi? ( aproximativ )
                 </label>
                 <input
                     className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5 focus:outline-none text-center mx-auto font-grotesk"}

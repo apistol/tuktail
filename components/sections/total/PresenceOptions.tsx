@@ -59,7 +59,7 @@ export const PresenceOptions: React.FC<PresenceOptionsProps> = ({ handleSetPrese
                             onClick={handleTooltipClose}
                             style={{ marginTop: '8px', textAlign: 'right' }}
                         >
-                            Close
+                            Inchide
                         </Button>
                     </div>
                 </Popover>

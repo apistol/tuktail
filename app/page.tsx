@@ -38,7 +38,7 @@ export default function Home() {
                 { invites && date && <Total/>}
                 { invites && date && <Footer/>}
 
-                <FloatingContactBubble templateMsg={""}/>
+                <FloatingContactBubble />
         </>
     );
 }

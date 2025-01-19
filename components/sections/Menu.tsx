@@ -4,50 +4,62 @@ import { useEventContext, menuItems } from "@/components/context";
 import smoothScrollToSection from "@/components/utils/smoothScrollToSection";
 import InfoIcon from "@mui/icons-material/Info";
 import getIsMobile from "@/components/utils/isMobile";
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, Popover, Typography, Button } from "@mui/material";
 
 function Menu() {
     const { addOne } = useEventContext();
     const isMobile = getIsMobile();
-    const [tooltipOpen, setTooltipOpen] = useState<{ [key: number]: boolean }>({});
+    const [anchorEls, setAnchorEls] = useState<{ [key: number]: HTMLElement | null }>({});
 
-    const handleTooltipToggle = (index:number) => {
-        setTooltipOpen((prev) => ({
+    const handlePopoverOpen = (index: number, event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEls((prev) => ({
             ...prev,
-            [index]: true,
+            [index]: event.currentTarget,
         }));
-
-        // Automatically close the tooltip after 5 seconds
-        setTimeout(() => {
-            setTooltipOpen((prev) => ({
-                ...prev,
-                [index]: false,
-            }));
-        }, 5000);
     };
 
-    const getDrinkDescription = (index:number) => {
+    const handlePopoverClose = (index: number) => {
+        setAnchorEls((prev) => ({
+            ...prev,
+            [index]: null,
+        }));
+    };
+
+    const getDrinkDescription = (index: number) => {
         const description = menuItems[index].description;
         const shortDescription = menuItems[index].shortDescription;
 
         return isMobile ? (
             <div className={"flex flex-row items-center font-grotesk m-10 z-10"}>
                 <p>{shortDescription}</p>
-                <Tooltip
-                    title={description}
-                    open={tooltipOpen[index] || false}
-                    onClose={() => setTooltipOpen((prev) => ({
-                        ...prev,
-                        [index]: false,
-                    }))}
-                    disableFocusListener
-                    disableHoverListener
-                    disableTouchListener
+                <IconButton onClick={(e) => handlePopoverOpen(index, e)}>
+                    <InfoIcon className={"info-icon"} />
+                </IconButton>
+                <Popover
+                    open={Boolean(anchorEls[index])}
+                    anchorEl={anchorEls[index]}
+                    onClose={() => handlePopoverClose(index)}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
                 >
-                    <IconButton onClick={() => handleTooltipToggle(index)}>
-                        <InfoIcon className={"info-icon"} />
-                    </IconButton>
-                </Tooltip>
+                    <div style={{ padding: '10px', maxWidth: '200px' }}>
+                        <Typography variant="body2">{description}</Typography>
+                        <Button
+                            size="small"
+                            variant="text"
+                            onClick={() => handlePopoverClose(index)}
+                            style={{ marginTop: '8px', textAlign: 'right' }}
+                        >
+                            Close
+                        </Button>
+                    </div>
+                </Popover>
             </div>
         ) : (
             <p className={"font-grotesk m-10"}>{description}</p>

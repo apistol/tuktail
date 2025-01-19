@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function Footer() {
     return (
@@ -23,8 +24,12 @@ function Footer() {
 
             <div className={"lg:w-1/3"}>
                 <h3 className={"text-white"}><strong>Link-uri utile</strong></h3>
-                <p className={"text-white"}>Termeni si conditii</p>
-                <p className={"text-white"}>GDPR</p>
+                <p className={"text-white"}>
+                    <Link href="/termenisiconditii">Termeni si conditii</Link>
+                </p>
+                <p className={"text-white"}>
+                    <Link href="/gdpr">GDPR</Link>
+                </p>
             </div>
         </div>
     );
