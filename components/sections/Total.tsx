@@ -245,7 +245,7 @@ function Total() {
                                     sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                 >
                                     <TableCell align="center" scope="row">{order.name}</TableCell>
-                                    <TableCell align="center" className={"text-center"}>{order.qty * 20} Litrii</TableCell>
+                                    <TableCell align="center" className={"text-center"}>{order.qty * 20} Litri</TableCell>
                                     <TableCell align="center"
                                                className={"text-center"}>{menuItems[order.id - 1].price}</TableCell>
                                     <TableCell align="center"
