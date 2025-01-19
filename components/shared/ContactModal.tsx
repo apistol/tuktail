@@ -4,9 +4,12 @@ import {
     Box,
     Typography,
     TextField,
-    Button,
     Grid,
+    Button,
+    Snackbar,
+    Alert,
 } from "@mui/material";
+import axios from "axios";
 
 interface ContactModalProps {
     open: boolean;
@@ -28,107 +31,163 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
         city: false,
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [toastOpen, setToastOpen] = useState(false); // State to control toast visibility
+    const [toastMessage, setToastMessage] = useState("");
+    const [toastSeverity, setToastSeverity] = useState<"success" | "error">(
+        "success"
+    );
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
     const validateForm = () => {
         const newErrors = {
-            name: !formData.name.trim(),
+            name: formData.name.trim() === "",
             phone: !/^\+?\d{10,15}$/.test(formData.phone),
             email: !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email),
-            city: !formData.city.trim(),
+            city: formData.city.trim() === "",
         };
         setErrors(newErrors);
         return !Object.values(newErrors).some((error) => error);
     };
 
-    const handleSubmit = () => {
-        if (validateForm()) {
-            console.log("Form Data:", formData);
+    const handleSubmit = async () => {
+        if (!validateForm()) return;
+
+        setIsSubmitting(true);
+
+        try {
+            const response = await axios.post("/api/contact", formData);
+            console.log("Form submitted successfully:", response.data);
+
+            // Show success toast
+            setToastMessage("Mesajul a fost trimis cu succes!");
+            setToastSeverity("success");
+            setToastOpen(true);
+
+            // Clear form and close modal
+            setFormData({ name: "", phone: "", email: "", city: "" });
             onClose();
+        } catch (error) {
+            console.error("Error submitting form:", error);
+
+            // Show error toast
+            setToastMessage("Eroare la trimiterea mesajului. Încercați din nou.");
+            setToastSeverity("error");
+            setToastOpen(true);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
-    const handleChange = (field: string, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }));
+    const handleToastClose = () => {
+        setToastOpen(false);
     };
 
     return (
-        <Modal open={open} onClose={onClose}  style={{background: "#F3E8E1"}}>
-            <Box
-                sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: 400,
-                    bgcolor: "background.paper",
-                    p: 4,
-                    borderRadius: 2,
-                    boxShadow: 24,
-                }}
-            >
-                <Typography variant="h6" mb={2}>
-                    Completeaza detaliile
-                </Typography>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            label="Nume"
-                            variant="outlined"
-                            value={formData.name}
-                            error={errors.name}
-                            helperText={errors.name && "Nume obligatoriu"}
-                            onChange={(e) => handleChange("name", e.target.value)}
-                        />
+        <>
+            <Modal open={open} onClose={onClose}>
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: 400,
+                        bgcolor: "background.paper",
+                        p: 4,
+                        borderRadius: 2,
+                        boxShadow: 24,
+                    }}
+                >
+                    <Typography variant="h6" mb={2}>
+                        Completează detaliile
+                    </Typography>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Nume"
+                                name="name"
+                                variant="outlined"
+                                value={formData.name}
+                                error={errors.name}
+                                helperText={errors.name && "Numele este obligatoriu"}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Telefon"
+                                name="phone"
+                                variant="outlined"
+                                value={formData.phone}
+                                error={errors.phone}
+                                helperText={errors.phone && "Număr de telefon invalid"}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Email"
+                                name="email"
+                                variant="outlined"
+                                value={formData.email}
+                                error={errors.email}
+                                helperText={errors.email && "Adresă de email invalidă"}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Oraș"
+                                name="city"
+                                variant="outlined"
+                                value={formData.city}
+                                error={errors.city}
+                                helperText={errors.city && "Orașul este obligatoriu"}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSubmit}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? "Se trimite..." : "Trimite"}
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            label="Telefon"
-                            variant="outlined"
-                            value={formData.phone}
-                            error={errors.phone}
-                            helperText={errors.phone && "Telefon invalid"}
-                            onChange={(e) =>
-                                handleChange("phone", e.target.value)
-                            }
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            label="Email"
-                            variant="outlined"
-                            value={formData.email}
-                            error={errors.email}
-                            helperText={errors.email && "Email invalid"}
-                            onChange={(e) =>
-                                handleChange("email", e.target.value)
-                            }
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            label="Oras"
-                            variant="outlined"
-                            value={formData.city}
-                            error={errors.city}
-                            helperText={errors.city && "Oras obligatoriu"}
-                            onChange={(e) => handleChange("city", e.target.value)}
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
+                </Box>
+            </Modal>
 
-                        <button
-                            className={"text-center custom-button mx-auto text-sm"}
-                            onClick={handleSubmit}
-                        >
-                            Trimite
-                        </button>
-                    </Grid>
-                </Grid>
-            </Box>
-        </Modal>
+            {/* Snackbar for Toast Notifications */}
+            <Snackbar
+                open={toastOpen}
+                autoHideDuration={6000}
+                onClose={handleToastClose}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            >
+                <Alert
+                    onClose={handleToastClose}
+                    severity={toastSeverity}
+                    sx={{ width: "100%" }}
+                >
+                    {toastMessage}
+                </Alert>
+            </Snackbar>
+        </>
     );
 };
 

@@ -45,7 +45,7 @@ const Total = () => {
     }
 
     return (
-        <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle"}>
+        <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
             <h2 className="text-center text-5xl font-grotesk w-screen mb-10">Simulator petrecere</h2>
             <div className="flex flex-col lg:flex-row justify-center align-middle">
                 <div id="edit" className="lg:w-1/2 flex flex-col align-middle justify-center gap-5">

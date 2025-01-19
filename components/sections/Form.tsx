@@ -4,6 +4,21 @@ import {useEventContext} from "@/components/context";
 import {Alert} from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
 import {gsap} from "gsap";
+import {DatePicker} from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import isBetween from 'dayjs/plugin/isBetween';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+
+dayjs.extend(customParseFormat);
+dayjs.extend(localizedFormat);
+dayjs.extend(isBetween);
+dayjs.extend(weekOfYear);
+
 
 function Form() {
     const {setDate, setInvites} = useEventContext();
@@ -81,16 +96,16 @@ function Form() {
                 <label className={"form_label text-center text-2xl lg:text-5xl font-grotesk"} htmlFor="date">
                     În ce data va fi evenimentul?
                 </label>
-                <input
-                    className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5 focus:outline-none font-grotesk form_text_input_date mx-auto"}
-                    type="date"
-                    id="date"
-                    name="date"
-                    required
-                    min={currentDate}
-                    value={dateState} // Controlled input
-                    onChange={(e) => handleSetDate(e.target.value)}
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        label=""
+                        onChange={(e: any) => handleSetDate(e)}
+                        className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5" +
+                            " font-grotesk form_text_input_date mx-auto"}
+                        minDate={dayjs(currentDate)}
+                    />
+                </LocalizationProvider>
+
             </div>
             <div className={"w-screen flex flex-col justify-center align-middle px-10"}>
                 <label className={"form_label text-center text-2xl lg:text-5xl font-grotesk"} htmlFor="invites">
@@ -111,13 +126,20 @@ function Form() {
                 />
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
+                { (!editedState.touchedDate || !editedState.touchedInvites) && <Alert className={"max-w-96 my-10" +                    " mx-auto"} icon={<InfoIcon fontSize="inherit"/>} severity="warning">
+                    Nu poti progresa mai jos daca nu introduci data evenimentului si un numar aproximativ de invitati.
+                </Alert>}
 
-                <Alert className={"max-w-96 my-10 mx-auto"} icon={<InfoIcon fontSize="inherit"/>} severity="success">
-                    Aceste informatii ne vor ajuta sa iti oferim sugestii personalizate legate de petrecerea ta.
-                </Alert>
+                {editedState.touchedDate &&
+                    editedState.touchedInvites && (
+                        <Alert className={"max-w-96 my-10 mx-auto"} icon={<InfoIcon fontSize="inherit"/>}
+                               severity="success">
+                            Aceste informatii ne vor ajuta sa iti oferim sugestii personalizate legate de petrecerea ta.
+                        </Alert>
+                    )}
             </div>
             {/* User cannot proceed if no input was inserted */}
-            {   editedState.touchedDate &&
+            {editedState.touchedDate &&
                 editedState.touchedInvites && <div className={"absolute bottom-5 right-0 left-0"}>
                     <a
                         onClick={handleScroll}

@@ -25,7 +25,7 @@ function Footer() {
             <div className={"lg:w-1/3"}>
                 <h3 className={"text-white"}><strong>Link-uri utile</strong></h3>
                 <p className={"text-white"}>
-                    <Link href="/termenisiconditii">Termeni si conditii</Link>
+                    <Link href="/app/termenisiconditii">Termeni si conditii</Link>
                 </p>
                 <p className={"text-white"}>
                     <Link href="/gdpr">GDPR</Link>
