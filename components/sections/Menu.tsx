@@ -92,7 +92,7 @@ function Menu() {
                                 smoothScrollToSection(menuItems[index].nextId);
                             }}
                         >
-                            As incerca
+                            ADAUGA SI CONTINUA
                         </button>
                         {menuItems[index].nextId && (
                             <button

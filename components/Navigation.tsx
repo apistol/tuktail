@@ -4,7 +4,7 @@ import Image from "next/image";
 const Navigation = () => {
 
     const handleFacebook = () => {
-        window.open('https://www.facebook.com/profile.php?id=61571936429913', '_blank');
+        window.open('https://www.facebook.com/profile.php?id=61571911179673', '_blank');
     }
     const handleInstagram = () => {
         window.open('https://www.instagram.com/tukteilromania/', '_blank');

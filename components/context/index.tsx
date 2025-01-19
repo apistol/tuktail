@@ -137,7 +137,7 @@ export const EventProvider = ({children}: { children: ReactNode }) => {
 
     return (
         <EventContext.Provider
-            value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne}}>
+            value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne, }}>
             {children}
         </EventContext.Provider>
     );
