@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
-import { useEventContext } from "@/components/context";
+import {useEventContext} from "@/components/context";
 import {Alert} from "@mui/material";
 import InfoIcon from '@mui/icons-material/Info';
 import {gsap} from "gsap";
 
 function Form() {
-    const { setDate, setInvites } = useEventContext();
+    const {setDate, setInvites} = useEventContext();
 
     const [invitesState, setInvitesState] = useState<string>("10"); // Default minimum is 10
     const [dateState, setDateState] = useState<string>(new Date().toISOString().split('T')[0]);
+
+    const [editedState, setEditedState] = useState({
+        touchedDate: false,
+        touchedInvites: false
+    })
     const [error, setError] = useState<string | null>(null);
 
     const currentDate = new Date().toISOString().split('T')[0];
@@ -17,6 +22,11 @@ function Form() {
     const handleSetDate = (date: string) => {
         setDateState(date);
         setDate(date); // Update context
+
+        setEditedState(prevState => ({
+            ...prevState,
+            touchedDate: true
+        }))
     };
 
     const handleSetInvites = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,16 +54,21 @@ function Form() {
                 setError(null); // Clear error if valid
                 setInvitesState(parsedInvites.toString());
                 setInvites(parsedInvites.toString()); // Update context
+
+                setEditedState(prevState => ({
+                    ...prevState,
+                    touchedInvites: true
+                }))
             }
         }
     };
 
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        if(!invitesState){
+        if (!invitesState) {
             setError("Trebuie să introduci un număr valid de invitați ca sa putem sa te ajutam cu estimarile.");
-        }else if(!dateState){
+        } else if (!dateState) {
             setError("Trebuie să introduci o data a evenimentului, ca sa putem sa te ajutam cu estimarile.");
-        }else{
+        } else {
             e.preventDefault();
             const target = "#menu";
             gsap.to(window, {duration: 1, scrollTo: target, ease: "power4.inOut"});
@@ -97,18 +112,20 @@ function Form() {
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
 
-                <Alert className={"max-w-96 my-10 mx-auto"} icon={<InfoIcon fontSize="inherit" />} severity="success">
+                <Alert className={"max-w-96 my-10 mx-auto"} icon={<InfoIcon fontSize="inherit"/>} severity="success">
                     Aceste informatii ne vor ajuta sa iti oferim sugestii personalizate legate de petrecerea ta.
                 </Alert>
             </div>
-            <div className={"absolute bottom-5 right-0 left-0"}>
-                <a
-                    onClick={handleScroll}
-                    className={"flex justify-center text-xl text-center cursor-pointer font-mono mx-4 mb-8 z-10"}
-                >
-                    <ScrollAnimation />
-                </a>
-            </div>
+            {/* User cannot proceed if no input was inserted */}
+            {   editedState.touchedDate &&
+                editedState.touchedInvites && <div className={"absolute bottom-5 right-0 left-0"}>
+                    <a
+                        onClick={handleScroll}
+                        className={"flex justify-center text-xl text-center cursor-pointer font-mono mx-4 mb-8 z-10"}
+                    >
+                        <ScrollAnimation/>
+                    </a>
+                </div>}
         </div>
     );
 }
