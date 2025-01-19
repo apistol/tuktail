@@ -22,7 +22,7 @@ const Navigation = () => {
             </div>
             <div className="col-span-1 flex-1">
                 <div className={"flex h-full justify-start align-middle"}>
-                    <Image width={153}  height={49} src={"./mini-logo.svg"} alt={"placeholder"} className={"ml-10" +
+                    <Image width={153}  height={49} src={"./logo-dark.svg"} alt={"placeholder"} className={"ml-10" +
                         " lg:m-auto"}/>
                 </div>
             </div>
