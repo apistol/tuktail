@@ -105,7 +105,6 @@ function Form() {
                             onChange={(e: any) => handleSetDate(e)}
                             className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5" +
                                 " font-grotesk form_text_input_date mx-auto w-96"}
-                            style={{width: "200px"}}
                             minDate={dayjs(currentDate)}
                         />
                     </div>
