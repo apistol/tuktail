@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { EventProvider } from "@/components/context";
 import Image from "next/image";
+import { Analytics } from "@vercel/analytics/react"
 
 // Global type declarations for `gtag` and `fbq` on `window`
 declare global {
@@ -96,6 +97,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Suspense fallback={null}>
                 <AnalyticsTracker />
             </Suspense>
+            <Analytics/>
+
             {children}
         </EventProvider>
         </body>
