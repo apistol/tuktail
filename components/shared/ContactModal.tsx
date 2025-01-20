@@ -18,10 +18,10 @@ interface ContactModalProps {
 
 const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
     const [formData, setFormData] = useState({
-        name: "",
-        phone: "",
-        email: "",
-        city: "",
+        name: "Alex Pistol",
+        phone: "0762552951",
+        email: "apistol5395@gmail.com",
+        city: "Bucuresti",
     });
 
     const [errors, setErrors] = useState({

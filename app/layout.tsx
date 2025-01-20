@@ -32,7 +32,7 @@ function AnalyticsTracker() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        const url = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`;
+        const url = `${pathname}${searchParams?.toString() ? `?${searchParams?.toString()}` : ""}`;
 
         // Google Analytics Page View
         if (typeof window.gtag === "function") {

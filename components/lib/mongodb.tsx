@@ -1,9 +1,13 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, MongoClientOptions } from "mongodb";
 
 const uri = process.env.MONGO_URI as string; // Add your MongoDB connection string in .env.local
-const options = {};
+const options: MongoClientOptions = {
+    tlsAllowInvalidCertificates: true, // Add this line
+    serverSelectionTimeoutMS: 5000, // Add a timeout for server selection
+    socketTimeoutMS: 45000, // Add a timeout for socket operations
+};
 
-let client: MongoClient;
+let client = new MongoClient(uri, options);
 let clientPromise: Promise<MongoClient>;
 
 if (!process.env.MONGO_URI) {

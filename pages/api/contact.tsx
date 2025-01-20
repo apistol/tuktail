@@ -4,16 +4,16 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
         const { name, phone, email, city } = req.body;
-
         if (!name || !phone || !email || !city) {
             return res.status(400).json({ error: "All fields are required" });
         }
+        console.log("req.body");
 
         try {
             const client = await clientPromise;
-            const db = client.db("tukteil"); // Replace with your database name
+            const db = client.db("TukteilDB"); // Replace with your database name
 
-            const result = await db.collection("contacts").insertOne({
+            const result = await db.collection("events").insertOne({
                 name,
                 phone,
                 email,
