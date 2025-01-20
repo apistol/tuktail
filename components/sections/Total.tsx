@@ -21,6 +21,13 @@ const Total = () => {
     const [menuState, setMenuState] = useState<any>([]);
     const [modalOpen, setModalOpen] = useState(false);
 
+    const payloadModal = {
+        menu,
+        invites,
+        glassType,
+        presence
+    };
+
 
     useEffect(() => {
         setMenuState(menu);
@@ -92,6 +99,7 @@ const Total = () => {
                     <ContactModal
                         open={modalOpen}
                         onClose={() => setModalOpen(false)}
+                        payloadModal={payloadModal}
                     />
                 </div>
             </div>

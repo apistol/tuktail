@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
-        const { name, phone, email, city } = req.body;
+        const { name, phone, email, city,  invitees, menu, invites, glassType , presence} = req.body;
         if (!name || !phone || !email || !city) {
             return res.status(400).json({ error: "All fields are required" });
         }
@@ -18,6 +18,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 phone,
                 email,
                 city,
+                menu,
+                invites,
+                glassType,
+                presence,
                 createdAt: new Date(),
             });
 

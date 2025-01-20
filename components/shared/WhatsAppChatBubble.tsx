@@ -4,8 +4,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const FloatingContactBubble: React.FC = () => {
     const handleWhatsAppClick = () => {
-        const message = encodeURIComponent("Salut! Vreau sa organizez cea mai frumoasa petrecere ever!!!");
-        window.open(`https://wa.me/0762552951?text=${message}`, "_blank");
+        window.open('https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere!', '_blank');
     };
 
     return (

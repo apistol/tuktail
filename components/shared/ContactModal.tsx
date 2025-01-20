@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
     Modal,
     Box,
     Typography,
     TextField,
     Grid,
-    Button,
     Snackbar,
     Alert,
 } from "@mui/material";
@@ -14,14 +13,16 @@ import axios from "axios";
 interface ContactModalProps {
     open: boolean;
     onClose: () => void;
+    payloadModal: any;
 }
 
-const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
+const ContactModal: React.FC<ContactModalProps> = ({open, onClose, payloadModal}) => {
     const [formData, setFormData] = useState({
-        name: "Alex Pistol",
-        phone: "0762552951",
-        email: "apistol5395@gmail.com",
-        city: "Bucuresti",
+        ...payloadModal,
+        name: "",
+        phone: "",
+        email: "",
+        city: "",
     });
 
     const [errors, setErrors] = useState({
@@ -41,8 +42,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData((prev:  any) => ({...prev, [name]: value}));
     };
 
     const validateForm = () => {
@@ -62,7 +63,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
         setIsSubmitting(true);
 
         try {
-            const response = await axios.post("/api/contact", formData);
+            console.log("formData : ")
+            console.log(formData)
+            const response = await axios.post("/api/contact", {...formData, ...payloadModal});
             console.log("Form submitted successfully:", response.data);
 
             // Show success toast
@@ -71,7 +74,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
             setToastOpen(true);
 
             // Clear form and close modal
-            setFormData({ name: "", phone: "", email: "", city: "" });
+            setFormData({name: "", phone: "", email: "", city: ""});
             onClose();
         } catch (error) {
             console.error("Error submitting form:", error);
@@ -158,15 +161,13 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button
-                                fullWidth
-                                variant="contained"
-                                color="primary"
+                            <button
+                                className={"text-center custom-button mx-auto text-sm"}
                                 onClick={handleSubmit}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? "Se trimite..." : "Trimite"}
-                            </Button>
+                            </button>
                         </Grid>
                     </Grid>
                 </Box>
@@ -177,12 +178,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
                 open={toastOpen}
                 autoHideDuration={6000}
                 onClose={handleToastClose}
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                anchorOrigin={{vertical: "bottom", horizontal: "center"}}
             >
                 <Alert
                     onClose={handleToastClose}
                     severity={toastSeverity}
-                    sx={{ width: "100%" }}
+                    sx={{width: "100%"}}
                 >
                     {toastMessage}
                 </Alert>
