@@ -192,16 +192,6 @@ const ContactModal: React.FC<ContactModalProps> = ({open, onClose, payloadModal}
                 </Alert>
             </Snackbar>
 
-            <br/>
-            <br/>
-            <a onClick={() => {
-                return window.open(
-                    'https://docs.google.com/forms/d/e/1FAIpQLSfn4lNFZsvyWgJgikyNiEuoHle9zAQ1ISFcgBsfOGsM3gy7ag/viewform?usp=header',
-                    '_blank' // Opens in a new tab
-                )
-            }}>
-                Ajuta-ma cu niste raspunsuri te rog! 🥹
-            </a>
         </>
     );
 };

@@ -103,6 +103,15 @@ const Total = () => {
                     />
                 </div>
             </div>
+
+            <br/>
+            <br/>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfn4lNFZsvyWgJgikyNiEuoHle9zAQ1ISFcgBsfOGsM3gy7ag/viewform?usp=header"
+               target="_blank"
+                className={"text-center font-bold cursor-pointer hover:text-red-900 "}
+            >
+                Ajuta-ma cu niste raspunsuri te rog! 🥹
+            </a>
         </div>
     );
 };
