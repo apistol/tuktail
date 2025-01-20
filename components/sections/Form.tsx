@@ -99,7 +99,7 @@ function Form() {
                 <LocalizationProvider
                     dateAdapter={AdapterDayjs}
                 >
-                    <div className={"w-screen flex flex-col justify-center align-middle text-center mx-auto"}>
+                    <div className={"w-screen flex justify-center align-middle text-center mx-auto"}>
                         <DatePicker
                             label=""
                             onChange={(e: any) => handleSetDate(e)}
