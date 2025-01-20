@@ -13,11 +13,13 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import isBetween from 'dayjs/plugin/isBetween';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+import 'dayjs/locale/ro'; // Import the locale
 
 dayjs.extend(customParseFormat);
 dayjs.extend(localizedFormat);
 dayjs.extend(isBetween);
 dayjs.extend(weekOfYear);
+dayjs.locale('ro'); // Set the locale globally
 
 
 function Form() {
@@ -32,7 +34,7 @@ function Form() {
     })
     const [error, setError] = useState<string | null>(null);
 
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = dayjs().format('DD/MM/YYYY');
 
     const handleSetDate = (date: string) => {
         setDateState(date);
@@ -101,7 +103,7 @@ function Form() {
                 >
                     <div className={"w-screen flex justify-center align-middle text-center mx-auto"}>
                         <DatePicker
-                            label=""
+                            label="Alegeți data"
                             onChange={(e: any) => handleSetDate(e)}
                             className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5" +
                                 " font-grotesk form_text_input_date mx-auto w-96"}

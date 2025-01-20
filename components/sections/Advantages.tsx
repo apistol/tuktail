@@ -47,12 +47,12 @@ function Advantages() {
                     src={"./advantages-motive.svg"}
                 />
                 {isMobile && (
-                    <div className={"flex flex-row justify-end absolute left-0 right-0 bottom-10"}>
+                    <div className={"flex flex-row justify-center absolute left-0 right-0 bottom-10"}>
                         <ScrollableLink
                             to={advantages[0].id}
                             smooth={true}
                             duration={500}
-                            className={"text-xl text-white text-right cursor-pointer font-mono"}
+                            className={"text-xl text-white text-center cursor-pointer font-mono"}
                         >
                             <ScrollAnimation />
                         </ScrollableLink>

@@ -21,7 +21,7 @@ const Navigation = () => {
             <div className="hidden lg:block col-span-1 flex-1 ">
             </div>
             <div className="col-span-1 flex-1">
-                <div className={"flex h-full justify-start align-middle"}>
+                <div className={"flex h-full flex-col justify-center align-middle"}>
                     <Image width={153}  height={49} src={"./logo-dark.svg"} alt={"placeholder"} className={"ml-10" +
                         " lg:m-auto"}/>
                 </div>
@@ -30,25 +30,25 @@ const Navigation = () => {
                 <div className="flex flex-row gap-1">
                     <a
                         onClick={() => handleFacebook()}
-                        className={"flex align-middle lg:align-top"}
+                        className={"flex flex-col justify-center align-middle"}
                     >
                         <Image width={49} height={49} src={"./icon-facebook.svg"} alt={"Facebook"} className={"w-8"}/>
                     </a>
                     <a
                         onClick={() => handleInstagram()}
-                        className={"flex align-middle lg:align-top"}
+                        className={"flex flex-col justify-center align-middle"}
                     >
                         <Image width={49} height={49} src={"./icon-instagram.svg"} alt={"Instagram"} className={"w-8"}/>
                     </a>
                     <a
                         onClick={() => handleEmail()}
-                        className={"flex align-middle lg:align-top"}
+                        className={"flex flex-col justify-center align-middle"}
                     >
                         <Image width={49} height={49} src={"./icon-email.svg"} alt={"Email"} className={"w-8"}/>
                     </a>
                     <a
                         onClick={() => handleWhatsApp()}
-                        className={"flex align-middle lg:align-top"}
+                        className={"flex flex-col justify-center align-middle"}
                     >
                         <Image width={49} height={49} src={"./icon-whatsapp.svg"} alt={"Whatsapp"} className={"w-8"}/>
                     </a>

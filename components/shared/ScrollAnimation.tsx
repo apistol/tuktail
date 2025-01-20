@@ -10,7 +10,7 @@ const LottieCursor = () => {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: 'scroll-animation.json',
+      path: 'animation-scroll.json',
     });
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -33,8 +33,8 @@ const LottieCursor = () => {
       ref={lottieRef}
       style={{
         pointerEvents: 'none',
-        width: '100px', // Adjust the size as needed
-        height: '100px', // Adjust the size as needed
+        width: 'auto', // Adjust the size as needed
+        height: '250px', // Adjust the size as needed
       }}
     />
   );
