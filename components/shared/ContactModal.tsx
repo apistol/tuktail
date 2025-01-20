@@ -63,10 +63,13 @@ const ContactModal: React.FC<ContactModalProps> = ({open, onClose, payloadModal}
         setIsSubmitting(true);
 
         try {
-            console.log("formData : ")
-            console.log(formData)
-            const response = await axios.post("/api/contact", {...formData, ...payloadModal});
-            console.log("Form submitted successfully:", response.data);
+
+             await axios.post("/api/contact", {...formData, ...payloadModal});
+
+            window.open(
+                'https://docs.google.com/forms/d/e/1FAIpQLSfn4lNFZsvyWgJgikyNiEuoHle9zAQ1ISFcgBsfOGsM3gy7ag/viewform?usp=header',
+                '_blank' // Opens in a new tab
+            );
 
             // Show success toast
             setToastMessage("Mesajul a fost trimis cu succes!");
