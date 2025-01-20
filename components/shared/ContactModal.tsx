@@ -179,7 +179,7 @@ const ContactModal: React.FC<ContactModalProps> = ({open, onClose, payloadModal}
             {/* Snackbar for Toast Notifications */}
             <Snackbar
                 open={toastOpen}
-                autoHideDuration={6000}
+                autoHideDuration={null}
                 onClose={handleToastClose}
                 anchorOrigin={{vertical: "bottom", horizontal: "center"}}
             >
@@ -191,6 +191,17 @@ const ContactModal: React.FC<ContactModalProps> = ({open, onClose, payloadModal}
                     {toastMessage}
                 </Alert>
             </Snackbar>
+
+            <br/>
+            <br/>
+            <a onClick={() => {
+                return window.open(
+                    'https://docs.google.com/forms/d/e/1FAIpQLSfn4lNFZsvyWgJgikyNiEuoHle9zAQ1ISFcgBsfOGsM3gy7ag/viewform?usp=header',
+                    '_blank' // Opens in a new tab
+                )
+            }}>
+                Ajuta-ma cu niste raspunsuri te rog! 🥹
+            </a>
         </>
     );
 };

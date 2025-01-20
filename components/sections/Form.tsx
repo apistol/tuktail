@@ -101,7 +101,7 @@ function Form() {
                 <LocalizationProvider
                     dateAdapter={AdapterDayjs}
                 >
-                    <div className={"w-screen flex justify-center align-middle text-center mx-auto"}>
+                    <div className={"w-screen flex justify-center align-middle text-center mx-auto mt-10"}>
                         <DatePicker
                             label="Alegeți data"
                             onChange={(e: any) => handleSetDate(e)}
@@ -115,7 +115,8 @@ function Form() {
             </div>
             <div className={"w-screen flex flex-col justify-center align-middle px-10"}>
                 <label className={"form_label text-center text-2xl lg:text-5xl font-grotesk"} htmlFor="invites">
-                    Câți invitați vor fi? ( aproximativ )
+                    <p>Câți invitați vor fi? </p>
+                    <p> ( aproximativ )</p>
                 </label>
                 <input
                     className={"form_text_input bg-transparent text-2xl lg:text-5xl mt-5 focus:outline-none text-center mx-auto font-grotesk"}
@@ -132,24 +133,23 @@ function Form() {
                 />
                 {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
-                {(!editedState.touchedDate || !editedState.touchedInvites) &&
+                {(!editedState.touchedDate || !editedState.touchedInvites) && <>
                     <Alert className={"max-w-96 my-10" + " mx-auto"} icon={<InfoIcon fontSize="inherit"/>}
                            severity="warning">
                         Nu poti progresa mai jos daca nu introduci data evenimentului si un numar aproximativ de
                         invitati.
-                    </Alert>}
+                    </Alert>
+                    <Alert className={"max-w-96 mx-auto"} icon={<InfoIcon fontSize="inherit"/>}
+                           severity="success">
+                        Aceste informatii ne vor ajuta sa iti oferim sugestii personalizate legate de petrecerea ta.
+                    </Alert>
+                </>
+                }
 
-                {editedState.touchedDate &&
-                    editedState.touchedInvites && (
-                        <Alert className={"max-w-96 my-10 mx-auto"} icon={<InfoIcon fontSize="inherit"/>}
-                               severity="success">
-                            Aceste informatii ne vor ajuta sa iti oferim sugestii personalizate legate de petrecerea ta.
-                        </Alert>
-                    )}
             </div>
             {/* User cannot proceed if no input was inserted */}
             {editedState.touchedDate &&
-                editedState.touchedInvites && <div className={"absolute bottom-5 right-0 left-0"}>
+                editedState.touchedInvites && <div className={""}>
                     <a
                         onClick={handleScroll}
                         className={"flex justify-center text-xl text-center cursor-pointer font-mono mx-4 mb-8 z-10"}

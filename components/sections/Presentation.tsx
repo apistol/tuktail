@@ -3,6 +3,7 @@ import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
 import Image from "next/image";
+import isMobile from "@/components/utils/isMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,39 +53,42 @@ function Presentation() {
     };
 
     return (
-        <div id={"impact"} ref={containerRef} className="fold fold3 relative" style={{minHeight: "100vh"}}>
-            <h1 className={"text-5xl font-mono text-center my-10"}>CUM ARATA TUKURILE?</h1>
-            <div className={"flex flex-col lg:flex-row"}>
-                <div className={"flex-1 flex"}>
-                    <Image alt={"Tuk1"}
-                           ref={img1Ref}
-                           width={500}
-                           height={500}
-                           className={"contain-content"}
-                           src={"/tuk1.png"}
-                           style={{objectFit: 'contain', width: '100%', height: '100%'}}/>
+        <>
+            <div id={"impact"} ref={containerRef} className="fold fold3 relative" style={{minHeight: "100vh"}}>
+                <h1 className={"text-5xl font-mono text-center my-10"}>CUM ARATA TUKURILE?</h1>
+                <div className={"flex flex-col lg:flex-row"}>
+                    <div className={"flex-1 flex"}>
+                        <Image alt={"Tuk1"}
+                               ref={img1Ref}
+                               width={500}
+                               height={500}
+                               className={"contain-content"}
+                               src={"/tuk1.png"}
+                               style={{objectFit: 'contain', width: '100%', height: '100%'}}/>
+                    </div>
+                    <div className={"flex-1 flex"}>
+                        <Image alt={"Tuk2"}
+                               ref={img2Ref}
+                               width={500}
+                               height={500}
+                               className={"contain-content"}
+                               src={"/tuk2.png"}
+                               style={{objectFit: 'contain', width: '100%', height: '100%'}}/>
+                    </div>
                 </div>
-                <div className={"flex-1 flex"}>
-                    <Image alt={"Tuk2"}
-                           ref={img2Ref}
-                           width={500}
-                           height={500}
-                           className={"contain-content"}
-                           src={"/tuk2.png"}
-                           style={{objectFit: 'contain', width: '100%', height: '100%'}}/>
-                </div>
+
+
             </div>
 
             <div
-                className={"flex flex-row justify-center absolute left-0 right-0"}
-                style={{bottom: "-50px"}}
+                className={"flex flex-row justify-center"}
             >
                 <a onClick={handleScroll}
                    className={"text-xl text-white text-right cursor-pointer font-mono z-10"}>
                     <ScrollAnimation/>
                 </a>
             </div>
-        </div>
+        </>
     );
 }
 
