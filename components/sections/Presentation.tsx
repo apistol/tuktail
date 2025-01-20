@@ -3,7 +3,6 @@ import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
 import Image from "next/image";
-import isMobile from "@/components/utils/isMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
