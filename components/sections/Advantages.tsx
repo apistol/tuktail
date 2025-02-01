@@ -39,6 +39,7 @@ function Advantages() {
         >
             {/* Image Section */}
             <div className={`${isMobile ? "h-screen m-10 relative" : "lg:w-3/5 h-full flex justify-center align-middle"}`}>
+                <h2 className={"hidden"}>3 motive pentru care sa ne chemi la evenimentul tau</h2>
                 <Image
                     alt={"Avantaje Tuk"}
                     width={500}

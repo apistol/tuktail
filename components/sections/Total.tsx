@@ -54,8 +54,28 @@ const Total = () => {
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
             <h2 className="text-center text-5xl font-grotesk w-screen mb-10">Simulator petrecere</h2>
-            <div className="flex flex-col lg:flex-row justify-center align-middle">
-                <div id="edit" className="lg:w-1/2 flex flex-col align-middle justify-center gap-5">
+            <div className="flex flex-col justify-center align-middle px-10 lg:px-20">
+                <div id="edit" className="flex flex-col align-middle justify-center gap-5">
+
+                    <label className={"form_label text-center text-1xl lg:text-2xl font-grotesk"} htmlFor="invites">
+                        <p>Câți invitați vor fi? </p>
+                        <p> ( aproximativ )</p>
+                    </label>
+                    <input
+                        className={"form_text_input bg-transparent text-1xl lg:text-2xl mt-5 focus:outline-none" +
+                            " text-center mx-auto font-grotesk"}
+                        type="text" // Restrict input to numeric values
+                        id="invites"
+                        name="invites"
+                        required
+                        min={10} // Enforce minimum at HTML level
+                        max={10000} // Enforce maximum at HTML level
+                        value={presence} // Controlled input
+                        onClick={() => setPresence("")}
+                        onFocus={() => setPresence("")}
+                        onChange={(data) =>setPresence(String(data))}
+                    />
+
                     <GlassOptions handleChangeGlass={setGlassType}/>
                     <PresenceOptions handleSetPresence={setPresence}/>
                     <MenuTable
@@ -66,7 +86,7 @@ const Total = () => {
                         handleSubstractMenu={(id) => handleSubstractMenu(menuState, setMenuState, id)}
                     />
                 </div>
-                <div id="summary" className="lg:w-1/2 flex flex-col justify-center align-middle p-10 lg:p-0">
+                <div id="summary" className="flex flex-col justify-center align-middle">
                     <h4 className="my-5 text-2xl">Sumar</h4>
                     <p>
                         Pentru cei <strong>{invites}</strong> de invitati, vei
@@ -104,14 +124,6 @@ const Total = () => {
                 </div>
             </div>
 
-            <br/>
-            <br/>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfn4lNFZsvyWgJgikyNiEuoHle9zAQ1ISFcgBsfOGsM3gy7ag/viewform?usp=header"
-               target="_blank"
-                className={"text-center font-bold cursor-pointer hover:text-red-900 "}
-            >
-                Ajuta-ma cu niste raspunsuri te rog! 🥹
-            </a>
         </div>
     );
 };

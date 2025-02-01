@@ -12,12 +12,27 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      // backgroundImage: {
-      //   'section-hero': "url('/hero-glass.png')",
-      //   'section-advantages': "url('/hero-glass.svg')",
-      // },
+      keyframes: {
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        fadeUp: "fadeUp 2s ease-out forwards",
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: any) {
+      const newUtilities = {
+        ".delay-500": { animationDelay: "0.5s" },
+        ".delay-1000": { animationDelay: "1s" },
+        ".delay-1500": { animationDelay: "1.5s" },
+        ".delay-2000": { animationDelay: "2s" },
+      };
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
+  ],
 };
 export default config;

@@ -14,8 +14,8 @@ function Footer() {
 
             <div className={"lg:w-1/3"}>
                 <h3 className={"text-white"}><strong>Contact</strong></h3>
-                <p className={"text-white"}>Telefon: 0123456789</p>
-                <p className={"text-white"}>Email: </p>
+                <p className={"text-white"}>Telefon: +40 768 814 320</p>
+                <p className={"text-white"}>Email: tukteiloffice@gmail.com</p>
                 <br/>
                 <h3 className={"text-white"}><strong>Contact</strong></h3>
                 <p className={"text-white"}>Firma: SOCIETY DXB S.R.L.</p>
@@ -25,7 +25,7 @@ function Footer() {
             <div className={"lg:w-1/3"}>
                 <h3 className={"text-white"}><strong>Link-uri utile</strong></h3>
                 <p className={"text-white"}>
-                    <Link href="/app/termenisiconditii">Termeni si conditii</Link>
+                    <Link href="/termenisiconditii">Termeni si conditii</Link>
                 </p>
                 <p className={"text-white"}>
                     <Link href="/gdpr">GDPR</Link>

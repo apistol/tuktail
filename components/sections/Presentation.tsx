@@ -47,7 +47,7 @@ function Presentation() {
 
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
-        const target = "#form";
+        const target = "#menu";
         gsap.to(window, {duration: 1, scrollTo: target, ease: "power4.inOut"});
     };
 

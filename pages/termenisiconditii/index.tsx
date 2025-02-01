@@ -1,8 +1,9 @@
 import React from 'react';
+import "../../App.css";
 
 const Termenisiconditii = () => {
     return (
-        <div className="p-6 bg-gray-100">
+        <div className="px-20">
             <h1 className="text-2xl font-bold mb-4">Termeni și Condiții</h1>
             <p className="text-sm text-gray-600 mb-6">Ultima actualizare: 19 ianuarie 2025</p>
 

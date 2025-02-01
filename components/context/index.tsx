@@ -92,7 +92,7 @@ const EventContext = createContext<EventContextType | undefined>(undefined);
 
 export const EventProvider = ({children}: { children: ReactNode }) => {
     const [date, setDate] = useState<string>('');
-    const [invites, setInvites] = useState<string>('');
+    const [invites, setInvites] = useState<string>('introdu un numar estimativ ');
     const [menu, setMenu] = useState<OrderItem[]>([]);
     const [glassType, setGlassType] = useState<string>('');
     const [presence, setPresence] = useState<string>('');
