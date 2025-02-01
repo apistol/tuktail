@@ -1,83 +1,50 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     FormControl,
-    FormLabel,
-    RadioGroup,
-    FormControlLabel,
-    Radio,
-    IconButton,
-    Popover,
-    Typography,
-    Button
+    Select,
+    MenuItem,
+    Typography
 } from '@mui/material';
-import InfoIcon from '@mui/icons-material/Info';
 
 interface GlassOptionsProps {
     handleChangeGlass: (value: string) => void;
 }
 
-export const GlassOptions: React.FC<GlassOptionsProps> = ({ handleChangeGlass }) => {
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+export const GlassOptions: React.FC<GlassOptionsProps> = ({handleChangeGlass}) => {
 
-    const handleTooltipOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
+    const [selectedGlass, setSelectedGlass] = useState("plastic"); // Default to "plastic"
+
+    const handleSelectChange = (event: any) => {
+        setSelectedGlass(event.target.value);
+        handleChangeGlass(event.target.value);
     };
-
-    const handleTooltipClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
 
     return (
-        <FormControl>
-            <FormLabel className="text-center flex justify-center align-middle" id="glass-material">
-                <Typography variant="body1" style={{lineHeight:3}}>
+        <div className={"flex flex-col lg:flex-row align-middle justify-center lg:justify-between gap-5"}>
+
+            <div>
+                <p className="mt-2 text-center lg:text-left text-2xl lg:text-2xl font-grotesk">
                     Cu ce fel de pahare ai vrea sa fie serviti invitatii?
-                </Typography>
-                <IconButton onClick={handleTooltipOpen}>
-                    <InfoIcon className="info-icon" />
-                </IconButton>
-                <Popover
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleTooltipClose}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}
-                >
-                    <div style={{ padding: '10px', maxWidth: '200px' }}>
-                        <Typography variant="body1" style={{lineHeight:3}}>
-                            Tipul paharului va influenta estimarea facuta final.
-                        </Typography>
-                        <Button
-                            size="small"
-                            variant="text"
-                            onClick={handleTooltipClose}
-                            style={{ marginTop: '8px', textAlign: 'right' }}
-                        >
-                            Inchide
-                        </Button>
-                    </div>
-                </Popover>
-            </FormLabel>
-            <RadioGroup
-                row
-                aria-labelledby="glass-material"
-                name="glass-material"
-                className="flex justify-center"
-                onChange={(e) => handleChangeGlass(e.target.value)}
-            >
-                <FormControlLabel value="carton" control={<Radio />} label="carton" />
-                <FormControlLabel value="plastic" control={<Radio />} label="plastic" />
-                <FormControlLabel value="sticla" control={<Radio />} label="sticla" />
-                <FormControlLabel value="cristal" control={<Radio />} label="cristal" />
-            </RadioGroup>
-        </FormControl>
+                </p>
+                <p className="text-center lg:text-left text-lg lg:text-1xl font-grotesk">
+                    ( Tipul paharului va influenta estimarea finală )
+                </p>
+            </div>
+
+
+            <FormControl>
+                <Select
+                    className={"p-0"}
+                    value={selectedGlass}
+                    onChange={handleSelectChange}
+                    variant={"outlined"}>
+                    <MenuItem value="carton">Carton</MenuItem>
+                    <MenuItem value="plastic">Plastic</MenuItem>
+                    <MenuItem value="sticla">Sticlă</MenuItem>
+                    <MenuItem value="cristal">Cristal</MenuItem>
+                </Select>
+            </FormControl>
+        </div>
+
     );
 };

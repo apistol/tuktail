@@ -54,7 +54,7 @@ function Presentation() {
     return (
         <>
             <div id={"impact"} ref={containerRef} className="fold fold3 relative" style={{minHeight: "100vh"}}>
-                <h1 className={"text-5xl font-mono text-center my-10"}>CUM ARATA TUKURILE?</h1>
+                <h4 className={"text-5xl font-mono text-center my-10"}>CUM ARATA TUKURILE?</h4>
                 <div className={"flex flex-col lg:flex-row"}>
                     <div className={"flex-1 flex"}>
                         <Image alt={"Tuk1"}

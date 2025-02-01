@@ -14,9 +14,10 @@ import {
     handleTrashMenu
 } from '../utils';
 import ContactModal from "@/components/shared/ContactModal";
+import {TextField, Typography} from "@mui/material";
 
 const Total = () => {
-    const {menu, invites, setGlassType, glassType, presence, setPresence} =
+    const {menu, invites, setGlassType, glassType, presence, setPresence, setInvites} =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
     const [modalOpen, setModalOpen] = useState(false);
@@ -53,41 +54,55 @@ const Total = () => {
 
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
-            <h2 className="text-center text-5xl font-grotesk w-screen mb-10">Simulator petrecere</h2>
+            <h2 className="text-center text-5xl uppercase font-mono w-screen mb-10">Simulator petrecere</h2>
             <div className="flex flex-col justify-center align-middle px-10 lg:px-20">
                 <div id="edit" className="flex flex-col align-middle justify-center gap-5">
+                    <div className={"flex flex-col lg:flex-row align-middle justify-center lg:justify-between gap-5"}>
+                        <div>
+                            <p className="mt-2 text-center lg:text-left text-2xl lg:text-2xl font-grotesk">
+                                Câți invitați vor fi?
+                            </p>
+                            <p className="text-center lg:text-left text-lg lg:text-1xl font-grotesk">
+                                ( aproximativ )
+                            </p>
+                        </div>
+                        <TextField
+                            id="invites"
+                            name="invites"
+                            className={"text-center"}
+                            type="text"
+                            variant="outlined"
+                            inputProps={{min: 10, max: 10000}} // Restricts input range
+                            value={invites || ""}
+                            onChange={(e) => {
+                                if (/^\d*$/.test(e.target.value)) { // Ensure only numbers are allowed
+                                    setInvites(e.target.value);
+                                }
+                            }}
+                            error={presence !== "" && (Number(invites) < 10 || Number(invites) > 10000)} // Corrected error condition
+                            helperText={
+                                invites !== "" && (Number(invites) < 10)
+                                    ? "Trebuie să ai minim 10 invitați"
+                                    : Number(invites) > 10000
+                                        ? "Hai să nu exagerăm"
+                                        : ""
+                            }
+                        />
+                    </div>
 
-                    <label className={"form_label text-center text-1xl lg:text-2xl font-grotesk"} htmlFor="invites">
-                        <p>Câți invitați vor fi? </p>
-                        <p> ( aproximativ )</p>
-                    </label>
-                    <input
-                        className={"form_text_input bg-transparent text-1xl lg:text-2xl mt-5 focus:outline-none" +
-                            " text-center mx-auto font-grotesk"}
-                        type="text" // Restrict input to numeric values
-                        id="invites"
-                        name="invites"
-                        required
-                        min={10} // Enforce minimum at HTML level
-                        max={10000} // Enforce maximum at HTML level
-                        value={presence} // Controlled input
-                        onClick={() => setPresence("")}
-                        onFocus={() => setPresence("")}
-                        onChange={(data) =>setPresence(String(data))}
-                    />
 
                     <GlassOptions handleChangeGlass={setGlassType}/>
                     <PresenceOptions handleSetPresence={setPresence}/>
-                    <MenuTable
+                    {(menuState.length !== 0) && <MenuTable
                         menuState={menuState}
                         menuItems={menuItems}
                         handleAddMenu={(id) => handleAddMenu(menuState, setMenuState, id)}
                         handleTrashMenu={(id) => handleTrashMenu(menuState, setMenuState, id)}
                         handleSubstractMenu={(id) => handleSubstractMenu(menuState, setMenuState, id)}
-                    />
+                    />}
                 </div>
                 <div id="summary" className="flex flex-col justify-center align-middle">
-                    <h4 className="my-5 text-2xl">Sumar</h4>
+                    <h4 className="my-5 text-2xl font-mono">Sumar</h4>
                     <p>
                         Pentru cei <strong>{invites}</strong> de invitati, vei
                         avea <strong>{getAlcoholLiters(menuState)}L</strong>, insemnand{' '}
@@ -106,6 +121,7 @@ const Total = () => {
 
                     <br/>
                     <br/>
+                    <br/>
 
                     <button
                         className={"text-center custom-button mx-auto text-sm"}
@@ -116,11 +132,6 @@ const Total = () => {
                     </button>
 
 
-                    <ContactModal
-                        open={modalOpen}
-                        onClose={() => setModalOpen(false)}
-                        payloadModal={payloadModal}
-                    />
                 </div>
             </div>
 
