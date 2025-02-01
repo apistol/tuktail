@@ -3,7 +3,6 @@ import {
     FormControl,
     Select,
     MenuItem,
-    Typography
 } from '@mui/material';
 
 interface GlassOptionsProps {

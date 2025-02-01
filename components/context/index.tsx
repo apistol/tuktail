@@ -69,8 +69,8 @@ export const glassPrices: { [key: string]: number } = {
 
 export const presencePrices: { [key: string]: number } = {
     4:2000,
-    5:2200,
-    6:2400,
+    5:2000,
+    6:2000,
 }
 
 interface EventContextType {
@@ -86,16 +86,19 @@ interface EventContextType {
     setPresence: (presence: string) => void;
     addOne: (item: OrderItem) => void;
     removeOne: (item: OrderItem) => void;
+    setPhone:any;
+    phone:any;
 }
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
 
 export const EventProvider = ({children}: { children: ReactNode }) => {
     const [date, setDate] = useState<string>('');
-    const [invites, setInvites] = useState<string>('10');
+    const [invites, setInvites] = useState<string>('');
     const [menu, setMenu] = useState<OrderItem[]>([]);
     const [glassType, setGlassType] = useState<string>('plastic');
-    const [presence, setPresence] = useState<string>('');
+    const [presence, setPresence] = useState<string>('4');
+    const [phone, setPhone] = useState<string>("");
 
     const addOne = (item: OrderItem) => {
         setMenu((prevMenu) => {
@@ -137,7 +140,7 @@ export const EventProvider = ({children}: { children: ReactNode }) => {
 
     return (
         <EventContext.Provider
-            value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne, }}>
+            value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne, setPhone, phone}}>
             {children}
         </EventContext.Provider>
     );

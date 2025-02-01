@@ -31,7 +31,7 @@ export const MenuTable: React.FC<MenuTableProps> = ({
                                                     }) => (
     <div>
         <p className="mt-2 text-center lg:text-left text-2xl lg:text-2xl font-mono mb-6">
-            Meniuri
+            Comanda ta
         </p>
         <div className="overflow-x-auto">
             <div style={{minWidth: "400px", border: "1px solid #A67C52"}}>

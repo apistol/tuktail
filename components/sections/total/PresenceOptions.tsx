@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import {
     FormControl,
-    InputLabel,
     Select,
     MenuItem,
-    Typography
 } from '@mui/material';
 
 interface PresenceOptionsProps {
@@ -25,7 +23,7 @@ export const PresenceOptions: React.FC<PresenceOptionsProps> = ({handleSetPresen
 
             <div>
                 <p className="mt-2 text-center lg:text-left t text-2xl lg:text-2xl font-grotesk">
-                    Cate ore ai vrea sa ai tuk-ul la eveniment?
+                    Cate ore ai vrea sa stam la eveniment?
                 </p>
                 <p className="text-center lg:text-left text-lg lg:text-1xl font-grotesk mb-6">
                     (Tipul paharului va influenta estimarea finală)

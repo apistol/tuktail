@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-
-
 import {glassPrices, menuItems, presencePrices, useEventContext} from '@/components/context';
 import {GlassOptions} from './total/GlassOptions';
 import {PresenceOptions} from './total/PresenceOptions';
@@ -13,21 +11,13 @@ import {
     handleSubstractMenu,
     handleTrashMenu
 } from '../utils';
-import ContactModal from "@/components/shared/ContactModal";
-import {TextField, Typography} from "@mui/material";
+import {TextField} from "@mui/material";
+import RomanianPhoneInput from "@/components/shared/PhoneInput";
 
 const Total = () => {
-    const {menu, invites, setGlassType, glassType, presence, setPresence, setInvites} =
+    const {menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone} =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const payloadModal = {
-        menu,
-        invites,
-        glassType,
-        presence
-    };
 
 
     useEffect(() => {
@@ -52,6 +42,8 @@ const Total = () => {
         }
     }
 
+    const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
+
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
             <h2 className="text-center text-5xl uppercase font-mono w-screen mb-10">Simulator petrecere</h2>
@@ -66,28 +58,25 @@ const Total = () => {
                                 ( aproximativ )
                             </p>
                         </div>
-                        <TextField
-                            id="invites"
-                            name="invites"
-                            className={"text-center"}
-                            type="text"
-                            variant="outlined"
-                            inputProps={{min: 10, max: 10000}} // Restricts input range
-                            value={invites || ""}
-                            onChange={(e) => {
-                                if (/^\d*$/.test(e.target.value)) { // Ensure only numbers are allowed
-                                    setInvites(e.target.value);
-                                }
-                            }}
-                            error={presence !== "" && (Number(invites) < 10 || Number(invites) > 10000)} // Corrected error condition
-                            helperText={
-                                invites !== "" && (Number(invites) < 10)
-                                    ? "Trebuie să ai minim 10 invitați"
-                                    : Number(invites) > 10000
-                                        ? "Hai să nu exagerăm"
-                                        : ""
-                            }
-                        />
+                        <div>
+                            <TextField
+                                id="invites"
+                                name="invites"
+                                className={"text-center"}
+                                type="text"
+                                variant="outlined"
+                                inputProps={{min: 10, max: 10000}} // Restricts input range
+                                value={invites || ""}
+                                onChange={(e) => {
+                                    if (/^\d*$/.test(e.target.value)) { // Ensure only numbers are allowed
+                                        setInvites(e.target.value);
+                                    }
+                                }}
+                            />
+                            {(Number(invites) < 10 )&& <p className="text-red-600 text-sm mt-2">Trebuie să ai minim 10 invitați</p>}
+                            {(Number(invites) > 10000 )&& <p className="text-red-600 text-sm mt-2">Prea mulți invitați</p>}
+                        </div>
+
                     </div>
 
 
@@ -109,9 +98,9 @@ const Total = () => {
                         <strong>{getGlassesPerInviteCalcul(menuState, invites)}</strong> pahare per invitat.
                     </p>
 
-                    {Number(getGlassesPerInviteCalcul(menuState, invites)) < 1 && (<div>
+                    {Number(getGlassesPerInviteCalcul(menuState, invites)) < 2 && (<div>
                         <br/>
-                        <strong className={"text-red-900"}> Recomandam sa ai minim 1 pahar, pentru un invitat</strong>
+                        <strong className={"text-red-900"}> Recomandam sa ai minim 2 pahar, pentru un invitat</strong>
                     </div>)}
 
                     <br/>
@@ -123,10 +112,17 @@ const Total = () => {
                     <br/>
                     <br/>
 
+                    <RomanianPhoneInput sendToWapp={setPhone}/>
+
+                    <br/>
+                    <br/>
+
                     <button
-                        className={"text-center custom-button mx-auto text-sm"}
-                        onClick={() => setModalOpen(true)}
-                        // disabled={!glassType || !invites || !presence || !menuState}
+                        className={`text-center custom-button mx-auto text-sm ${(!romaniaPhoneRegex.test(phone) || !menuState.length) && "custom-button-disabled"}`}
+                        onClick={() => {
+                            window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map( (menuItem:any) => menuItem.name + " ")}.`, '_blank');
+                        }}
+                        disabled={!phone || !menuState}
                     >
                         Verifica disponibilitate
                     </button>
