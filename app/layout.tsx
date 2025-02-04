@@ -130,7 +130,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 t.src=v;s=b.getElementsByTagName(e)[0];
                 s.parentNode.insertBefore(t,s)}(window, document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', '1006630844650450'); // Replace with your Pixel ID
+                fbq('init', '2694453990724771'); // Updated Pixel ID
                 fbq('track', 'PageView');
             `}
         </Script>
@@ -141,10 +141,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 loading="lazy"
                 style={{ display: "none" }}
                 alt="Facebook Pixel"
-                src="https://www.facebook.com/tr?id=1006630844650450&ev=PageView&noscript=1"
+                src="https://www.facebook.com/tr?id=2694453990724771&ev=PageView&noscript=1"
             />
         </noscript>
-
         </body>
         </html>
     );
