@@ -79,6 +79,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <meta name="twitter:description" content="Ridica la urmatorul nivel cele mai importante evenimente din viata ta" />
             <meta name="twitter:image" content="https://www.tukteil.ro/logo-dark.svg" />
 
+            {/* Google Site Verification */}
+            <meta name="google-site-verification" content="00_Hkf99Ahh7Wf-nSYycPFzoNQL1eEKTzsjpJsBUAWY" />
+
             {/* Structured Data (Schema.org) */}
             <script type="application/ld+json" dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
