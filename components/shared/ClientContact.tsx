@@ -72,7 +72,7 @@ const ClientContact: React.FC<ClientContactProps> = ({ setPhone, setEmail }) => 
                 </>
             ) : (
                 <>
-                    <p className="mt-2 text-center lg:text-left text-lg lg:text-1xl font-mono mb-6">
+                    <p className="mt-2 text-left text-lg lg:text-1xl font-mono mb-6">
                         Adresa ta de email:
                     </p>
                     <TextField

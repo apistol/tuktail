@@ -4,10 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
         const { name, phone, email, city,  menu, invites, glassType , presence} = req.body;
-        if (!name || !phone || !email || !city) {
-            return res.status(400).json({ error: "All fields are required" });
-        }
-        
+
         try {
             const client = await clientPromise;
             const db = client.db("TukteilDB"); // Replace with your database name

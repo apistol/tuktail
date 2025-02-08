@@ -14,6 +14,7 @@ import {
 import { TextField } from "@mui/material";
 import ClientContact from "@/components/shared/ClientContact";
 import useDevice from "@/components/hooks/useDevice";
+import axios from 'axios';
 
 const Total = () => {
     const { menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone, email, setEmail } =
@@ -47,25 +48,18 @@ const Total = () => {
     const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
 
     const sendEmail = async () => {
-        const emailBody = `Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`;
         try {
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: 'example@example.com',
-                    subject: 'Party Request',
-                    body: emailBody,
-                }),
+            await axios.post("/api/contact", {
+                invites,
+                glassType,
+                presence,
+                menu: menuState,
+                phone,
+                email,
             });
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
             alert('Email sent successfully!');
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Error sending email:', error);
             alert('Failed to send email.');
         }
     };
@@ -152,8 +146,11 @@ const Total = () => {
                     <br />
                     <br />
 
+                    {/*{isMobileDevice && (!romaniaPhoneRegex.test(phone) && (<p className="text-center text-sm">Introdu un numar de telefon ca sa putem reveni catre tine</p>))}*/}
+                    {/*{!menuState.length && <p className="text-center text-sm">Adauga cel putin un produs in cos</p>}*/}
+
                     <button
-                        className={`text-center custom-button mx-auto text-sm ${(!romaniaPhoneRegex.test(phone) || !menuState.length) && "custom-button-disabled"}`}
+                        className={`text-center custom-button mx-auto text-sm`}
                         onClick={() => {
                             if (isMobileDevice) {
                                 sendWappMsg();
