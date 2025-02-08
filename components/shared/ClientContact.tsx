@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
-import useDevice from "../hooks/useDevice";
+import { isMobile } from 'react-device-detect';
 
 interface ClientContactProps {
     setPhone: any;
@@ -15,8 +15,6 @@ const ClientContact: React.FC<ClientContactProps> = ({ setPhone, setEmail }) => 
     const [phoneHelperText, setPhoneHelperText] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [emailHelperText, setEmailHelperText] = useState("");
-
-    const isMobile = useDevice();
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;

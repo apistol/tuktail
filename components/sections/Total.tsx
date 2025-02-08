@@ -13,15 +13,15 @@ import {
 } from '../utils';
 import { TextField } from "@mui/material";
 import ClientContact from "@/components/shared/ClientContact";
-import useDevice from "@/components/hooks/useDevice";
 import axios from 'axios';
+import {isMobile} from "react-device-detect";
 
 const Total = () => {
     const { menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone, email, setEmail } =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
 
-    const isMobileDevice = useDevice();
+    const isMobileDevice = isMobile;
 
     useEffect(() => {
         setMenuState(menu);
