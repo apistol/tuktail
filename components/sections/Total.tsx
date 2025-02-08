@@ -14,14 +14,12 @@ import {
 import { TextField } from "@mui/material";
 import ClientContact from "@/components/shared/ClientContact";
 import axios from 'axios';
-import {isMobile} from "react-device-detect";
 
 const Total = () => {
     const { menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone, email, setEmail } =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
 
-    const isMobileDevice = isMobile;
 
     useEffect(() => {
         setMenuState(menu);
@@ -30,7 +28,7 @@ const Total = () => {
     const getGlassesPrice = () => {
         if (glassType && invites) {
             return <p className={"text-1xl mb-5"}>
-                Costul celor <strong>{invites ? invites : 0}</strong>
+                Costul celor <strong>{invites ? invites : 0} </strong>
                 de pahare de <strong>{glassType} ( {glassPrices[glassType]}RON / pahar )</strong>,
                 va fi de <strong> {Number(invites ? invites : 0) * glassPrices[glassType]}</strong> RON
             </p>
@@ -45,7 +43,7 @@ const Total = () => {
         }
     }
 
-    // const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
+    const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
 
     const sendEmail = async () => {
         try {
@@ -57,10 +55,10 @@ const Total = () => {
                 phone,
                 email,
             });
-            alert('Email sent successfully!');
+            alert('Te vom contact curand!');
         } catch (error) {
-            console.error('Error sending email:', error);
-            alert('Failed to send email.');
+            // console.error('Eroare:', error);
+            alert('Eroare la conexiune, incearca sa ne conectezi prin metodele de social :( .');
         }
     };
 
@@ -146,19 +144,13 @@ const Total = () => {
                     <br />
                     <br />
 
-                    {/*{isMobileDevice && (!romaniaPhoneRegex.test(phone) && (<p className="text-center text-sm">Introdu un numar de telefon ca sa putem reveni catre tine</p>))}*/}
-                    {/*{!menuState.length && <p className="text-center text-sm">Adauga cel putin un produs in cos</p>}*/}
 
                     <button
-                        className={`text-center custom-button mx-auto text-sm`}
+                        className={`text-center custom-button mx-auto text-sm ${(!romaniaPhoneRegex.test(phone) || !menuState.length) && "custom-button-disabled"}`}
                         onClick={() => {
-                            if (isMobileDevice) {
-                                sendWappMsg();
-                            } else {
                                 sendEmail();
-                            }
                         }}
-                        disabled={isMobileDevice ? (!phone || !menuState) : (!email || !menuState)}
+                        disabled={(!phone || !menuState)}
                     >
                         Verifica disponibilitate
                     </button>

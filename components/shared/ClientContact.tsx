@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
-import { isMobile } from 'react-device-detect';
 
 interface ClientContactProps {
     setPhone: any;
@@ -10,11 +9,8 @@ interface ClientContactProps {
 const ClientContact: React.FC<ClientContactProps> = ({ setPhone, setEmail }) => {
 
     const [phone, setPhoneS] = useState("");
-    const [email, setEmailS] = useState("");
     const [phoneError, setPhoneError] = useState(false);
     const [phoneHelperText, setPhoneHelperText] = useState("");
-    const [emailError, setEmailError] = useState(false);
-    const [emailHelperText, setEmailHelperText] = useState("");
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -32,28 +28,12 @@ const ClientContact: React.FC<ClientContactProps> = ({ setPhone, setEmail }) => 
         }
     };
 
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setEmailS(value);
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(value)) {
-            setEmailError(true);
-            setEmailHelperText("Introduceți o adresă de email validă");
-        } else {
-            setEmailError(false);
-            setEmailHelperText("");
-            setEmail(value);
-        }
-    };
 
     return (
         <div className={"flex flex-col justify-center lg:justify-start"}>
-            {isMobile ? (
                 <>
                     <p className="mt-2 text-center lg:text-left text-lg lg:text-1xl font-mono mb-6">
-                        Numarul tau de telefon:
+                        Lasa-ne numarul de telefon pentru a te contacta:
                     </p>
                     <TextField
                         id="romanian-phone"
@@ -68,25 +48,7 @@ const ClientContact: React.FC<ClientContactProps> = ({ setPhone, setEmail }) => 
                         helperText={phoneHelperText}
                     />
                 </>
-            ) : (
-                <>
-                    <p className="mt-2 text-left text-lg lg:text-1xl font-mono mb-6">
-                        Adresa ta de email:
-                    </p>
-                    <TextField
-                        id="email"
-                        name="email"
-                        type="email"
-                        variant="outlined"
-                        className={"w-72"}
-                        placeholder="e.g. exemplu@domeniu.com"
-                        value={email}
-                        onChange={handleEmailChange}
-                        error={emailError}
-                        helperText={emailHelperText}
-                    />
-                </>
-            )}
+
         </div>
     );
 };
