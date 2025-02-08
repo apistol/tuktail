@@ -13,6 +13,7 @@ import Total from "@/components/sections/Total";
 import Footer from "@/components/sections/Footer";
 import Advantages from "@/components/sections/Advantages";
 import FloatingContactBubble from "@/components/shared/WhatsAppChatBubble";
+import AgeVerificationModal from "@/components/shared/AgeVerificationModal";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,6 +35,7 @@ export default function Home() {
                 <Total/>
                 <Footer/>
                 <FloatingContactBubble />
+                <AgeVerificationModal/>
         </>
     );
 }

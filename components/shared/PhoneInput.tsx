@@ -31,7 +31,7 @@ const RomanianPhoneInput: React.FC<RomanianPhoneInputProps> = ({ sendToWapp }) =
     };
 
     return (
-        <div>
+        <div className={"flex flex-col justify-center lg:justify-start"}>
             <p className="mt-2 text-center lg:text-left text-lg lg:text-1xl font-mono mb-6">
                 Numarul tau de telefon:
             </p>
@@ -40,7 +40,7 @@ const RomanianPhoneInput: React.FC<RomanianPhoneInputProps> = ({ sendToWapp }) =
                 name="romanian-phone"
                 type="tel"
                 variant="outlined"
-                fullWidth
+                className={"w-72"}
                 placeholder="e.g. 07XX XXX XXX"
                 value={phone}
                 onChange={handlePhoneChange}

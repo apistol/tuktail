@@ -15,7 +15,7 @@ export const handleSubstractMenu = (menuState: any, setMenuState: any, id: any) 
 export const getGlassesPerInviteCalcul = (menuState: any, invites: any) => {
     const oneKegInGlasses = 200;
     const totalKegs = menuState.reduce((acc: any, item: any) => acc + item.qty, 0);
-    return Math.round(totalKegs * oneKegInGlasses / invites);
+    return Math.round(totalKegs * oneKegInGlasses / (invites ? invites : 1));
 };
 
 export const getAlcoholLiters = (menuState: any) => {

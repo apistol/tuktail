@@ -24,13 +24,13 @@ const Total = () => {
         setMenuState(menu);
     }, [menu]);
 
-
     const getGlassesPrice = () => {
         if (glassType && invites) {
             return <p className={"text-1xl mb-5"}>
-                Costul celor <strong>{invites}</strong> de pahare de <strong>{glassType} ( {glassPrices[glassType]}RON /
-                pahar )</strong>, va fi de
-                <strong> {Number(invites) * glassPrices[glassType]}</strong> RON</p>
+                Costul celor <strong>{invites ? invites : 0 }</strong>
+                de pahare de <strong>{glassType} ( {glassPrices[glassType]}RON / pahar )</strong>,
+                va fi de <strong> {Number(invites ? invites : 0) * glassPrices[glassType]}</strong> RON
+            </p>
         }
     }
 
@@ -47,6 +47,12 @@ const Total = () => {
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
             <h2 className="text-center text-5xl uppercase font-mono w-screen mb-10">Simulator petrecere</h2>
+
+            {menuState.length < 1 && (<div className={"text-center my-8"}>
+                <strong className={"text-red-900"}>Trebuie sa adaugi cel putin un produs pentru a putea genera un
+                    estimat de pret</strong>
+            </div>)}
+
             <div className="flex flex-col justify-center align-middle px-10 lg:px-20">
                 <div id="edit" className="flex flex-col align-middle justify-center gap-5">
                     <div className={"flex flex-col lg:flex-row align-middle justify-center lg:justify-between gap-5"}>
@@ -55,14 +61,14 @@ const Total = () => {
                                 Câți invitați vor fi?
                             </p>
                             <p className="text-center lg:text-left text-lg lg:text-1xl font-grotesk">
-                                ( aproximativ )
+                                (aproximativ)
                             </p>
                         </div>
-                        <div>
+                        <div className={"w-56 lg:text-right"}>
                             <TextField
                                 id="invites"
                                 name="invites"
-                                className={"text-center"}
+                                className={"text-center w-full md:w-56"}
                                 type="text"
                                 variant="outlined"
                                 inputProps={{min: 10, max: 10000}} // Restricts input range
@@ -73,8 +79,10 @@ const Total = () => {
                                     }
                                 }}
                             />
-                            {(Number(invites) < 10 )&& <p className="text-red-600 text-sm mt-2">Trebuie să ai minim 10 invitați</p>}
-                            {(Number(invites) > 10000 )&& <p className="text-red-600 text-sm mt-2">Prea mulți invitați</p>}
+                            {(Number(invites) < 10) &&
+                                <p className="text-red-600 text-sm mt-2">Trebuie să ai minim 10 invitați</p>}
+                            {(Number(invites) > 10000) &&
+                                <p className="text-red-600 text-sm mt-2">Prea mulți invitați</p>}
                         </div>
 
                     </div>
@@ -100,7 +108,7 @@ const Total = () => {
 
                     {Number(getGlassesPerInviteCalcul(menuState, invites)) < 2 && (<div>
                         <br/>
-                        <strong className={"text-red-900"}> Recomandam sa ai minim 2 pahar, pentru un invitat</strong>
+                        <strong className={"text-red-900"}> Recomandam sa ai minim 2 pahare, pentru un invitat</strong>
                     </div>)}
 
                     <br/>
@@ -120,7 +128,7 @@ const Total = () => {
                     <button
                         className={`text-center custom-button mx-auto text-sm ${(!romaniaPhoneRegex.test(phone) || !menuState.length) && "custom-button-disabled"}`}
                         onClick={() => {
-                            window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map( (menuItem:any) => menuItem.name + " ")}.`, '_blank');
+                            window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank');
                         }}
                         disabled={!phone || !menuState}
                     >

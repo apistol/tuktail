@@ -20,7 +20,7 @@ function Advantages() {
             id: "advantage2",
             title: "02 Personalizare",
             description:
-                "Poti adapta meniul de bauturi in functie de preferintele invitatilor. (Vezi sectiunea de mai jos.)",
+                "Poti adapta meniul de bauturi in functie de preferintele invitatilor. (Vezi sectiunea de mai jos)",
             nextId: "advantage3",
         },
         {

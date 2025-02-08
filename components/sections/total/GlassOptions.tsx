@@ -26,7 +26,7 @@ export const GlassOptions: React.FC<GlassOptionsProps> = ({handleChangeGlass}) =
                     Cu ce fel de pahare ai vrea sa fie serviti invitatii?
                 </p>
                 <p className="text-center lg:text-left text-lg lg:text-1xl font-grotesk">
-                    ( Tipul paharului va influenta estimarea finală )
+                    (Tipul paharului va influenta estimarea finală)
                 </p>
             </div>
 
