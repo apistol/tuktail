@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {glassPrices, menuItems, presencePrices, useEventContext} from '@/components/context';
-import {GlassOptions} from './total/GlassOptions';
-import {PresenceOptions} from './total/PresenceOptions';
-import {MenuTable} from './total/MenuTable';
+import React, { useEffect, useState } from 'react';
+import { glassPrices, menuItems, presencePrices, useEventContext } from '@/components/context';
+import { GlassOptions } from './total/GlassOptions';
+import { PresenceOptions } from './total/PresenceOptions';
+import { MenuTable } from './total/MenuTable';
 import {
     getAlcoholLiters,
     getGlassesPerInviteCalcul,
@@ -11,14 +11,16 @@ import {
     handleSubstractMenu,
     handleTrashMenu
 } from '../utils';
-import {TextField} from "@mui/material";
-import RomanianPhoneInput from "@/components/shared/PhoneInput";
+import { TextField } from "@mui/material";
+import ClientContact from "@/components/shared/ClientContact";
+import useDevice from "@/components/hooks/useDevice";
 
 const Total = () => {
-    const {menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone} =
+    const { menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone, email, setEmail } =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
 
+    const isMobileDevice = useDevice();
 
     useEffect(() => {
         setMenuState(menu);
@@ -27,7 +29,7 @@ const Total = () => {
     const getGlassesPrice = () => {
         if (glassType && invites) {
             return <p className={"text-1xl mb-5"}>
-                Costul celor <strong>{invites ? invites : 0 }</strong>
+                Costul celor <strong>{invites ? invites : 0}</strong>
                 de pahare de <strong>{glassType} ( {glassPrices[glassType]}RON / pahar )</strong>,
                 va fi de <strong> {Number(invites ? invites : 0) * glassPrices[glassType]}</strong> RON
             </p>
@@ -43,6 +45,34 @@ const Total = () => {
     }
 
     const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
+
+    const sendEmail = async () => {
+        const emailBody = `Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`;
+        try {
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    to: 'example@example.com',
+                    subject: 'Party Request',
+                    body: emailBody,
+                }),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            alert('Email sent successfully!');
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Failed to send email.');
+        }
+    };
+
+    const sendWappMsg = async () => {
+        return window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank')
+    }
 
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
@@ -64,14 +94,15 @@ const Total = () => {
                                 (aproximativ)
                             </p>
                         </div>
-                        <div className={"w-56 lg:text-right"}>
+                        <div className={"lg:text-right"}>
                             <TextField
                                 id="invites"
                                 name="invites"
+                                style={{ width: "100%" }}
                                 className={"text-center w-full md:w-56"}
                                 type="text"
                                 variant="outlined"
-                                inputProps={{min: 10, max: 10000}} // Restricts input range
+                                inputProps={{ min: 10, max: 10000 }} // Restricts input range
                                 value={invites || ""}
                                 onChange={(e) => {
                                     if (/^\d*$/.test(e.target.value)) { // Ensure only numbers are allowed
@@ -79,17 +110,13 @@ const Total = () => {
                                     }
                                 }}
                             />
-                            {(Number(invites) < 10) &&
-                                <p className="text-red-600 text-sm mt-2">Trebuie să ai minim 10 invitați</p>}
-                            {(Number(invites) > 10000) &&
-                                <p className="text-red-600 text-sm mt-2">Prea mulți invitați</p>}
+                            {(Number(invites) < 10) && <p className="text-red-600 text-sm mt-2">Trebuie să ai minim 10 invitați</p>}
+                            {(Number(invites) > 10000) && <p className="text-red-600 text-sm mt-2">Prea mulți invitați</p>}
                         </div>
-
                     </div>
 
-
-                    <GlassOptions handleChangeGlass={setGlassType}/>
-                    <PresenceOptions handleSetPresence={setPresence}/>
+                    <GlassOptions handleChangeGlass={setGlassType} />
+                    <PresenceOptions handleSetPresence={setPresence} />
                     {(menuState.length !== 0) && <MenuTable
                         menuState={menuState}
                         menuItems={menuItems}
@@ -107,38 +134,39 @@ const Total = () => {
                     </p>
 
                     {Number(getGlassesPerInviteCalcul(menuState, invites)) < 2 && (<div>
-                        <br/>
+                        <br />
                         <strong className={"text-red-900"}> Recomandam sa ai minim 2 pahare, pentru un invitat</strong>
                     </div>)}
 
-                    <br/>
+                    <br />
                     {getGlassesPrice()}
                     {getPresencePrice()}
                     {getTotalPrice(glassType, invites, presence, menuState, menuItems, glassPrices, presencePrices)}
 
-                    <br/>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
+                    <br />
 
-                    <RomanianPhoneInput sendToWapp={setPhone}/>
+                    <ClientContact setPhone={setPhone} setEmail={setEmail} />
 
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
 
                     <button
                         className={`text-center custom-button mx-auto text-sm ${(!romaniaPhoneRegex.test(phone) || !menuState.length) && "custom-button-disabled"}`}
                         onClick={() => {
-                            window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank');
+                            if (isMobileDevice) {
+                                sendWappMsg();
+                            } else {
+                                sendEmail();
+                            }
                         }}
-                        disabled={!phone || !menuState}
+                        disabled={isMobileDevice ? (!phone || !menuState) : (!email || !menuState)}
                     >
                         Verifica disponibilitate
                     </button>
-
-
                 </div>
             </div>
-
         </div>
     );
 };

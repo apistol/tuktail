@@ -88,6 +88,8 @@ interface EventContextType {
     removeOne: (item: OrderItem) => void;
     setPhone:any;
     phone:any;
+    email:string;
+    setEmail:any;
 }
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
@@ -99,6 +101,7 @@ export const EventProvider = ({children}: { children: ReactNode }) => {
     const [glassType, setGlassType] = useState<string>('plastic');
     const [presence, setPresence] = useState<string>('4');
     const [phone, setPhone] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
 
     const addOne = (item: OrderItem) => {
         setMenu((prevMenu) => {
@@ -140,7 +143,7 @@ export const EventProvider = ({children}: { children: ReactNode }) => {
 
     return (
         <EventContext.Provider
-            value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne, setPhone, phone}}>
+            value={{date, invites, menu, glassType, presence, setDate, setInvites, setMenu, setGlassType, setPresence, addOne, removeOne, setPhone, phone, email, setEmail}}>
             {children}
         </EventContext.Provider>
     );

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
+import Image from "next/image";
 
 const AgeVerificationModal = ({ onAgree, onDisagree }:any) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -33,8 +34,7 @@ const AgeVerificationModal = ({ onAgree, onDisagree }:any) => {
             <div className="bg-white text-white p-6 ">
                 <DialogTitle className="text-center text-2xl font-semibold text-white">
                     <div className="flex justify-center mb-3">
-                        <img src="/logo-dark.svg" alt="SPUMANTERIA" className="h-32" />
-                    </div>
+                        <Image src="/logo-dark.svg" alt="SPUMANTERIA" className="h-32" width={128} height={128} />                    </div>
                     LASĂ-MĂ SĂ INTRU
                 </DialogTitle>
                 <DialogContent className="text-center">
