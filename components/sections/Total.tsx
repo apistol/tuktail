@@ -45,7 +45,7 @@ const Total = () => {
         }
     }
 
-    const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
+    // const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
 
     const sendEmail = async () => {
         try {
