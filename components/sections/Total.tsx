@@ -37,7 +37,7 @@ const Total = () => {
         if (glassType && invites) {
             return <p className={"text-1xl mb-5"}>
                 Costul celor <strong>{invites ? invites : 0} </strong>
-                de pahare de <strong>{glassType} ( {glassPrices[glassType]}RON / pahar )</strong>,
+                de pahare de <strong>{glassType} ({glassPrices[glassType]}RON / pahar)</strong>,
                 va fi de <strong> {Number(invites ? invites : 0) * glassPrices[glassType]}</strong> RON
             </p>
         }
