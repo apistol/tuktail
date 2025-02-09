@@ -4,16 +4,17 @@ import { TextField } from "@mui/material";
 interface ClientContactProps {
     setPhone: any;
     setEmail: any;
+    phoneError: any;
+    setPhoneError: any;
 }
 
-const ClientContact: React.FC<ClientContactProps> = ({ setPhone }) => {
+const ClientContact: React.FC<ClientContactProps> = ({ setPhone, phoneError, setPhoneError }) => {
 
     const [phone, setPhoneS] = useState("");
-    const [phoneError, setPhoneError] = useState(false);
     const [phoneHelperText, setPhoneHelperText] = useState("");
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+        const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
         setPhoneS(value);
 
         const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;

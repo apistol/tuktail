@@ -28,6 +28,9 @@ function Footer() {
                     <Link href="/termenisiconditii">Termeni si conditii</Link>
                 </p>
                 <p className={"text-white"}>
+                    <Link href="/politicaconfidentialitate">Politica de confidentialitate</Link>
+                </p>
+                <p className={"text-white"}>
                     <Link href="/gdpr">GDPR</Link>
                 </p>
             </div>

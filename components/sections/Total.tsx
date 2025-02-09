@@ -19,11 +19,19 @@ const Total = () => {
     const { menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone, email, setEmail } =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
+    const [userCanValidateForm, setUserCanValidateForm] = useState(false);
+    const [phoneError, setPhoneError] = useState(false);
 
 
     useEffect(() => {
         setMenuState(menu);
     }, [menu]);
+
+    useEffect(() => {
+        const isValid = menuState.length > 0 && romaniaPhoneRegex.test(phone) && invites !== "";
+        setUserCanValidateForm(isValid);
+    }, [menuState, phone, invites]);
+
 
     const getGlassesPrice = () => {
         if (glassType && invites) {
@@ -38,7 +46,7 @@ const Total = () => {
     const getPresencePrice = () => {
         if (presence) {
             return <p className={"text-1xl mb-5"}>
-                Vom sta <strong>{presence} ore</strong> iar asta va costa <strong>{presencePrices[presence]}RON</strong>,
+                Vom sta <strong>{presence} ore</strong> iar asta va costa <strong>{presencePrices[presence]} RON</strong>,
                 include pretul de inchiriere al tuk-ului.</p>
         }
     }
@@ -65,6 +73,7 @@ const Total = () => {
     // const sendWappMsg = async () => {
     //     return window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank')
     // }
+
 
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
@@ -126,34 +135,52 @@ const Total = () => {
                     </p>
 
                     {Number(getGlassesPerInviteCalcul(menuState, invites)) < 2 && (<div>
-                        <br />
+                        <br/>
                         <strong className={"text-red-900"}> Recomandam sa ai minim 2 pahare, pentru un invitat</strong>
                     </div>)}
 
-                    <br />
+                    <br/>
                     {getGlassesPrice()}
                     {getPresencePrice()}
                     {getTotalPrice(glassType, invites, presence, menuState, menuItems, glassPrices, presencePrices)}
 
-                    <br />
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
+                    <br/>
 
-                    <ClientContact setPhone={setPhone} setEmail={setEmail} />
+                    <ClientContact
+                        phoneError={phoneError}
+                        setPhoneError={setPhoneError}
+                        setPhone={setPhone}
+                        setEmail={setEmail}
+                    />
 
-                    <br />
-                    <br />
-
-
+                    <br/>
+                    <br/>
                     <button
-                        className={`text-center custom-button mx-auto text-sm ${(!romaniaPhoneRegex.test(phone) || !menuState.length) && "custom-button-disabled"}`}
+                        className={`text-center custom-button mx-auto text-sm mb-6 ${(!userCanValidateForm || phoneError ) && "custom-button-disabled"}`}
                         onClick={() => {
+                            if (userCanValidateForm && !phoneError) {
                                 sendEmail();
+                            }
                         }}
                         disabled={(!phone || !menuState)}
                     >
                         Verifica disponibilitate
                     </button>
+
+                    {menuState.length < 1 && (<div className={"text-center"}>
+                        <strong className={"text-red-900 text-xs"}>Trebuie sa adaugi cel putin un produs pentru a
+                            verifica disponibilitatea</strong>
+                    </div>)}
+                    {phoneError && (<div className={"text-center"}>
+                        <strong className={"text-red-900 text-xs"}>Trebuie sa introduci numarul de telefon valid pentru
+                            a verifica disponibilitatea</strong>
+                    </div>)}
+                    {invites === "" && (<div className={"text-center mb-8"}>
+                        <strong className={"text-red-900 text-xs"}>Trebuie sa introduci un numar estimativ de invitati
+                            pentru a verifica disponibilitatea</strong>
+                    </div>)}
                 </div>
             </div>
         </div>
