@@ -57,14 +57,14 @@ const Total = () => {
             });
             alert('Te vom contact curand!');
         } catch (error) {
-            // console.error('Eroare:', error);
+            console.error(error);
             alert('Eroare la conexiune, incearca sa ne conectezi prin metodele de social :( .');
         }
     };
 
-    const sendWappMsg = async () => {
-        return window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank')
-    }
+    // const sendWappMsg = async () => {
+    //     return window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank')
+    // }
 
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>

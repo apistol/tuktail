@@ -6,7 +6,7 @@ interface ClientContactProps {
     setEmail: any;
 }
 
-const ClientContact: React.FC<ClientContactProps> = ({ setPhone, setEmail }) => {
+const ClientContact: React.FC<ClientContactProps> = ({ setPhone }) => {
 
     const [phone, setPhoneS] = useState("");
     const [phoneError, setPhoneError] = useState(false);
