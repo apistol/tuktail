@@ -70,10 +70,7 @@ const Total = () => {
         }
     };
 
-    // const sendWappMsg = async () => {
-    //     return window.open(`https://wa.me/+40762552951?text=Salutare! Vreau sa organizez cea mai buna petrecere! Am ${invites} invitati, si vreau pahare de ${glassType}, tuk-ul pentru ${presence} ore, cu ${menuState.map((menuItem: any) => menuItem.name + " ")}.`, '_blank')
-    // }
-
+    
 
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
@@ -117,7 +114,7 @@ const Total = () => {
                     </div>
 
                     <GlassOptions handleChangeGlass={setGlassType} />
-                    <PresenceOptions handleSetPresence={setPresence} />
+                    {/*<PresenceOptions handleSetPresence={setPresence} />*/}
                     {(menuState.length !== 0) && <MenuTable
                         menuState={menuState}
                         menuItems={menuItems}
@@ -158,29 +155,24 @@ const Total = () => {
                     <br/>
                     <br/>
                     <button
-                        className={`text-center custom-button mx-auto text-sm mb-6 ${(!userCanValidateForm || phoneError ) && "custom-button-disabled"}`}
+                        className={`text-center custom-button mx-auto text-sm mb-6 ${( phoneError ) && "custom-button-disabled"}`}
                         onClick={() => {
                             if (userCanValidateForm && !phoneError) {
                                 sendEmail();
                             }
                         }}
-                        disabled={(!phone || !menuState)}
+                        disabled={phoneError}
                     >
                         Verifica disponibilitate
                     </button>
+                    
 
-                    {menuState.length < 1 && (<div className={"text-center"}>
-                        <strong className={"text-red-900 text-xs"}>Trebuie sa adaugi cel putin un produs pentru a
-                            verifica disponibilitatea</strong>
-                    </div>)}
+                  
                     {phoneError && (<div className={"text-center"}>
                         <strong className={"text-red-900 text-xs"}>Trebuie sa introduci numarul de telefon valid pentru
                             a verifica disponibilitatea</strong>
                     </div>)}
-                    {invites === "" && (<div className={"text-center mb-8"}>
-                        <strong className={"text-red-900 text-xs"}>Trebuie sa introduci un numar estimativ de invitati
-                            pentru a verifica disponibilitatea</strong>
-                    </div>)}
+                 
                 </div>
             </div>
         </div>

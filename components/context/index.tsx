@@ -22,7 +22,7 @@ export const menuItems = [
         nextId: "mimosa",
         currentId: "aperol",
         menuName: MenuNames.AperolSpritz,
-        price: 1800
+        price: 1750
     },
     {
         id: 2,
@@ -33,7 +33,7 @@ export const menuItems = [
         nextId: "hugo",
         currentId: "mimosa",
         menuName: MenuNames.Mimosa,
-        price: 1700
+        price: 1600
     },
     {
         id: 3,
@@ -45,7 +45,7 @@ export const menuItems = [
         nextId: "prosecco",
         currentId: "hugo",
         menuName: MenuNames.Hugo,
-        price: 1800
+        price: 1750
     },
     {
         id: 4,
@@ -56,7 +56,7 @@ export const menuItems = [
         nextId: "total",
         currentId: "prosecco",
         menuName: MenuNames.Prosecco,
-        price: 1600
+        price: 1500
     },
 ];
 
@@ -68,9 +68,9 @@ export const glassPrices: { [key: string]: number } = {
 }
 
 export const presencePrices: { [key: string]: number } = {
-    4:2000,
-    5:2000,
-    6:2000,
+    4:1800,
+    5:1800,
+    6:1800,
 }
 
 interface EventContextType {

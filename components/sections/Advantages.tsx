@@ -12,22 +12,19 @@ function Advantages() {
         {
             id: "advantage1",
             title: "01 Convenienta si flexibilitate",
-            description:
-                "Usor de amplasat in orice locatie, fie ca petrecerea este in aer liber sau intr-un spatiu inchis.",
+            description:"Usor de amplasat in orice locatie, fie ca petrecerea este in aer liber sau intr-un spatiu inchis.",
             nextId: "advantage2",
         },
         {
             id: "advantage2",
             title: "02 Personalizare",
-            description:
-                "Poti adapta meniul de bauturi in functie de preferintele invitatilor. (Vezi sectiunea de mai jos)",
+            description:"Poti adapta meniul de bauturi in functie de preferintele invitatilor. (Vezi sectiunea de mai jos)",
             nextId: "advantage3",
         },
         {
             id: "advantage3",
             title: "03 Atmosfera friendly",
-            description:
-                "Sociabili, tineri si cu un vibe bun, aducem un plus atmosferei de la evenimentul tau.",
+            description:"Sociabili, tineri si cu un vibe bun, aducem un plus atmosferei de la evenimentul tau.",
             nextId: "impact",
         },
     ];
