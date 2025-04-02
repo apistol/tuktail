@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { glassPrices, menuItems, presencePrices, useEventContext } from '@/components/context';
 import { GlassOptions } from './total/GlassOptions';
-import { PresenceOptions } from './total/PresenceOptions';
 import { MenuTable } from './total/MenuTable';
 import {
     getAlcoholLiters,
@@ -16,11 +15,13 @@ import ClientContact from "@/components/shared/ClientContact";
 import axios from 'axios';
 
 const Total = () => {
-    const { menu, invites, setGlassType, glassType, presence, setPresence, setInvites, setPhone, phone, email, setEmail } =
+    const { menu, invites, setGlassType, glassType, presence, setInvites, setPhone, phone, email, setEmail } =
         useEventContext();
     const [menuState, setMenuState] = useState<any>([]);
     const [userCanValidateForm, setUserCanValidateForm] = useState(false);
     const [phoneError, setPhoneError] = useState(false);
+    
+    const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
 
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const Total = () => {
     useEffect(() => {
         const isValid = menuState.length > 0 && romaniaPhoneRegex.test(phone) && invites !== "";
         setUserCanValidateForm(isValid);
-    }, [menuState, phone, invites]);
+    }, [menuState, phone, invites, romaniaPhoneRegex]);
 
 
     const getGlassesPrice = () => {
@@ -45,13 +46,10 @@ const Total = () => {
 
     const getPresencePrice = () => {
         if (presence) {
-            return <p className={"text-1xl mb-5"}>
-                Vom sta <strong>{presence} ore</strong> iar asta va costa <strong>{presencePrices[presence]} RON</strong>,
-                include pretul de inchiriere al tuk-ului.</p>
+            return <p className={"text-1xl mb-5"}>Pretul de inchiriere al tuk-ului este de 1800 RON.</p>
         }
     }
 
-    const romaniaPhoneRegex = /^(07\d{8}|\+40 7\d{8})$/;
 
     const sendEmail = async () => {
         try {
@@ -70,6 +68,10 @@ const Total = () => {
         }
     };
 
+
+    // const handleWhatsAppClick = () => {
+    //     window.open(`https://wa.me/+40762552951?text= Invitati:${invites}, pahare:${glassType}, timp:${presence}, meniu: ${menuState}, telefon: ${phone}, email: ${email}`, '_blank');
+    // };
     
 
     return (
