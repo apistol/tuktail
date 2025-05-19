@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Image from "next/image";
-import { useEventContext, menuItems } from "@/components/context";
+import { menuItems } from "@/components/context";
 import smoothScrollToSection from "@/components/utils/smoothScrollToSection";
 import InfoIcon from "@mui/icons-material/Info";
 import getIsMobile from "@/components/utils/isMobile";
 import { IconButton, Tooltip } from "@mui/material";
 
 function Menu() {
-    const { addOne } = useEventContext();
     const isMobile = getIsMobile();
     const [tooltipOpen, setTooltipOpen] = useState<{ [key: number]: boolean }>({});
 
@@ -80,26 +79,12 @@ function Menu() {
                         style={{ objectFit: 'contain' }}
                     />
                     <div className={"w-full lg:w-1/3 flex flex-col justify-center align-middle"}>
-                        <button
-                            className={"text-center custom-button w-72 mx-auto"}
-                            onClick={() => {
-                                const selectedItem = menuItems[index];
-                                addOne({
-                                    id: selectedItem.id,
-                                    name: selectedItem.title,
-                                    qty: 1,
-                                });
-                                smoothScrollToSection(menuItems[index].nextId);
-                            }}
-                        >
-                            Adauga si continua
-                        </button>
                         {menuItems[index].nextId && (
                             <button
                                 className={"text-center custom-button-oulined w-72 mx-auto"}
                                 onClick={() => smoothScrollToSection(menuItems[index].nextId)}
                             >
-                                Mergi mai departe
+                                Mai departe
                             </button>
                         )}
                     </div>
