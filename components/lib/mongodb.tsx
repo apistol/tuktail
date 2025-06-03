@@ -1,16 +1,16 @@
 import { MongoClient, MongoClientOptions } from "mongodb";
 
-const uri = process.env.MONGO_URI as string; // Add your MongoDB connection string in .env.local
+const uri = process.env.MONGODB_URI as string;
 const options: MongoClientOptions = {
-    tlsAllowInvalidCertificates: true, // Add this line
-    serverSelectionTimeoutMS: 5000, // Add a timeout for server selection
-    socketTimeoutMS: 45000, // Add a timeout for socket operations
+    tlsAllowInvalidCertificates: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
 };
 
 let client = new MongoClient(uri, options);
 let clientPromise: Promise<MongoClient>;
 
-if (!process.env.MONGO_URI) {
+if (!process.env.MONGODB_URI) {
     throw new Error("Please add your Mongo URI to .env.local");
 }
 
