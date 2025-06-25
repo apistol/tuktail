@@ -21,7 +21,7 @@
     "@vercel/analytics": "^1.4.1",
     "axios": "^1.7.9",
     "dayjs": "^1.11.13",
-    "gsap": "npm:@gsap/shockingly@^3.12.5",
+    "gsap": "npm:@gsap/shockingly@^3.12.7",
     "lottie-web": "^5.12.2",
     "mongodb": "^6.12.0",
     "next": "^14.2.2",

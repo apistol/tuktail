@@ -69,11 +69,6 @@ const Total = () => {
     };
 
 
-    // const handleWhatsAppClick = () => {
-    //     window.open(`https://wa.me/+40762552951?text= Invitati:${invites}, pahare:${glassType}, timp:${presence}, meniu: ${menuState}, telefon: ${phone}, email: ${email}`, '_blank');
-    // };
-    
-
     return (
         <div id="total" className={"min-h-[60vh] flex flex-col justify-center align-middle mb-20"}>
             <h2 className="text-center text-5xl uppercase font-mono w-screen mb-10">Simulator petrecere</h2>
